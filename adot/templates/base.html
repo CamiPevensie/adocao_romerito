@@ -10,6 +10,8 @@
 <body>
     {% include 'componentes/menu.html' %}
     {% block conteudo %}
+    <a href="{{url_for('cadastro')}}">Cadastro</a>
+    <a href="{{url_for('login')}}">Login</a>
     {% endblock %}
 </body>
 </html>

@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash;
 from werkzeug.security import check_password_hash;
-from modelo import engine, Usuario, Produto
+from modelo import engine, Usuario, Animal
 from sqlalchemy import create_engine, Column, String, Integer, Float
 from sqlalchemy.orm import declarative_base, sessionmaker
 

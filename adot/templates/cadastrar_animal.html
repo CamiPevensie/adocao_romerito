@@ -2,6 +2,12 @@
 {% block titulo %} Casdastrar animal {% endblock %}
 
 {% block conteudo %}
-<form action="{{url_for('cadastro')}}"></form>
+<form action="{{url_for('cadastro')}}">
+    Nome: <input type="text" name="nome">
+    raça: <input type="text" name="raca">
+    idade: <input type="number" name="idade">
+    sexo: <input type="text" name="sexo"> 
+
+</form>
 
 {% endblock %}
