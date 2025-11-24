@@ -23,6 +23,17 @@ def sobre():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        email = request.form['email_form']
+        senha = request.form['senha_form']
+
+        with Sessao_base() as sessao:
+            usuario = sessao.query(Usuario).filter_by(email=email).first()
+            print(usuario)
+        if usuario and usuario.senha == senha:
+            return f"Login bem-sucedido! Bem-vindo {usuario.nome}!"
+        else:
+            return "Usuário ou senha inválidos"
     return render_template('login.html')
 
 @app.route('/mascotes')
@@ -32,8 +43,8 @@ def mascotes():
 @app.route('/cadastro', methods = ['GET','POST'])
 def cadastro():
     if request.method == 'POST':
-        nome = request.form['nome_completo_form']
-        nome_completo = request.form['nome_form']
+        nome = request.form['nome_form']
+        nome_completo = request.form['nome_completo_form']
         telefone = request.form['telefone_form']
         email = request.form['email_form']
         senha = request.form['senha_form']
@@ -45,7 +56,7 @@ def cadastro():
         estado = request.form['estado_form']
 
         usuario = Usuario(nome=nome, nome_completo=nome_completo, telefone=telefone, email=email, senha=senha, rua=rua, bairro=bairro, cidade=cidade, numero=numero, complemento=complemento, estado=estado)
-        with Sessao_base as sessao:
+        with Sessao_base() as sessao:
             sessao.add(usuario)
             sessao.commit()
         return redirect(url_for('index'))
