@@ -21,47 +21,24 @@ def adocao():
 def sobre():
     return render_template('sobre.html')
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        email = request.form['email_form']
-        senha = request.form['senha_form']
-
-        with Sessao_base() as sessao:
-            usuario = sessao.query(Usuario).filter_by(email=email).first()
-            print(usuario)
-        if usuario and usuario.senha == senha:
-            return f"Login bem-sucedido! Bem-vindo {usuario.nome}!"
-        else:
-            return "Usuário ou senha inválidos"
-    return render_template('login.html')
-
-@app.route('/mascotes')
+@app.route('/animais')
 def mascotes():
-    return render_template('mascotes.html')
+    return render_template('animais.html')
 
-@app.route('/cadastro', methods = ['GET','POST'])
-def cadastro():
-    if request.method == 'POST':
-        nome = request.form['nome_form']
-        nome_completo = request.form['nome_completo_form']
-        telefone = request.form['telefone_form']
-        email = request.form['email_form']
-        senha = request.form['senha_form']
-        rua = request.form['rua_form']
-        bairro = request.form['bairro_form']
-        cidade = request.form['cidade_form']
-        numero = request.form['numero_form']
-        complemento = request.form['complemento_form']
-        estado = request.form['estado_form']
 
-        usuario = Usuario(nome=nome, nome_completo=nome_completo, telefone=telefone, email=email, senha=senha, rua=rua, bairro=bairro, cidade=cidade, numero=numero, complemento=complemento, estado=estado)
-        with Sessao_base() as sessao:
-            sessao.add(usuario)
-            sessao.commit()
-        return redirect(url_for('index'))
-    return render_template('cadastro.html')
-
-@app.route('/cadastrar_animal')
+@app.route('/cadastrar_animal', methods = ['GET','POST'])
 def cadastrar_animal():
+    if request.method =='POST':
+        nome = request.form['nome_form']
+        raca = request.form['raca_form']
+        idade = request.form['idade_form']
+        sexo = request.form['sexo_form']
+        porte = request.form['porte_form']
+        vacinado = request.form['vacinado_form']
+        vacinas_tomadas = request.form['vacinas_tomadas_form']
+        sobre = request.form['sobre_form']
+        localizacao = request.form['localizacao_form']
+        nome_protetor = request.form['nome_protetor_form']
+        telefone_contato = request.form['telefone_contato_form']
+        email_contato = request.form['email_contato_form']
     return render_template()

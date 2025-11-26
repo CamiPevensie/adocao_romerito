@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+{% block titulo %} Casdastrar animal {% endblock %}
+
+{% block conteudo %}
+<form action="{{url_for('cadastro')}}">
+    Nome: <input type="text" name="nome_form">
+    Raça: <input type="text" name="raca_form">
+    Idade: <input type="number" name="idade_form">
+    Sexo: <input type="text" name="sexo_form"> 
+    Porte: <input type="text" name="porte_form">
+    Vacinado? <input type="checkbox" name="vacinado_form">
+    Vacinas tomadas: <input type="text" name="vacinas_tomadas_form">
+    Sobre: <input type="text" name="sobre_form">
+    Localização: <input type="text" name="localizacao_form">
+    Nome do protetor: <input type="text" name="nome_protetor_form">
+    Telefone para contato: <input type="text" name="telefone_contato_form">
+    Email contato: <input type="text" name="email_contato_form">
+    <input type="submit" value="Enviar">
+</form>
+
+{% endblock %}

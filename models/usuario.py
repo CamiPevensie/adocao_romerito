@@ -1,9 +1,5 @@
-# Guardar os modelos do banco de dados
 from sqlalchemy import create_engine, Column, String, Integer, Float
-from sqlalchemy.orm import declarative_base, sessionmaker
-
-engine = create_engine('sqlite:///dados.db')
-Base = declarative_base()
+from database import Sessao_base, engine, Base
 
 class Usuario(Base):
     __tablename__ = 'usuarios'
@@ -22,16 +18,3 @@ class Usuario(Base):
     
     def __repr__(self):
         return f'<Usuario {self.nome}>'
-
-
-class Animal(Base):
-    __tablename__ = 'animais'
-    id = Column(Integer, primary_key=True)
-    nome = Column(String(40), nullable=False)
-    preco = Column(Float, nullable=False)
-    descricao = Column(String(100), nullable=False)
-    
-    def __repr__(self):
-        return f'<Produto {self.nome}>'
-    
-Base.metadata.create_all(engine)
