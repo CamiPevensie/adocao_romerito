@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
-from models.usuario import Usuario, Sessao_base
+from models.usuario import Usuario
 
 adocao_bp = Blueprint("adocao", __name__)
 

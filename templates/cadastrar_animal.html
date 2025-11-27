@@ -1,8 +1,9 @@
 {% extends 'base.html'%}
-{% block titulo %} Casdastrar animal {% endblock %}
+{% block titulo %} Formulário {% endblock %}
 
 {% block conteudo %}
-<form action="{{url_for('cadastro')}}">
+
+<form action="{{ url_for('animais.cadastrar_animal') }}" method="POST">
     Nome: <input type="text" name="nome_form">
     Raça: <input type="text" name="raca_form">
     Idade: <input type="number" name="idade_form">

@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
-from models.usuario import Usuario, Sessao_base
+from models.usuario import Usuario
+from typing import Optional
+from database import Sessao_base
 
 autenticacao_bp = Blueprint("auth", __name__)
 
@@ -12,10 +14,10 @@ def login():
         with Sessao_base() as sessao:
             usuario = sessao.query(Usuario).filter_by(email=email).first()
             print(usuario)
-        if usuario and usuario.senha == senha:
-            return f"Login bem-sucedido! Bem-vindo {usuario.nome}!"
-        else:
-            return "Usuário ou senha inválidos"
+            if usuario and usuario.senha == senha:
+                return f"Login bem-sucedido! Bem-vindo {usuario.nome}!"
+            else:
+                return "Usuário ou senha inválidos"
     return render_template('login.html')
 
 @autenticacao_bp.route('/cadastro', methods = ['GET','POST'])
@@ -39,6 +41,12 @@ def cadastro():
             sessao.commit()
         return redirect(url_for('index'))
     return render_template('cadastro.html')
+
+@autenticacao_bp.route('/logout')
+def logout():
+    session.clear()  
+    flash("Logout realizado com sucesso!", "success")
+    return redirect(url_for('auth.login')) 
 
 
 
