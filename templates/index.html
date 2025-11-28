@@ -1,9 +1,18 @@
 {% extends 'base.html'%}
-{% block titulo %} home {% endblock %}
+{% block titulo %} Adocao {% endblock %}
 
 {% block conteudo %}
-<h1>Bem-vido a página de adoção</h1>
 
-<p>oiiiiiii</p>
+{% for animal in animais %}
+    <a href="{{url_for('animais.ver_animal')}}">
+        <div class="animal-card">
+            <h3>{{ animal.nome }}</h3>
+            <p>Raça: {{ animal.raca }}</p>
+            <p>Idade: {{ animal.idade }} anos</p>
+            <p>Localização: {{ animal.localizacao }} anos</p>
+        </div>
+    </a>
+{% endfor %}
+
 
 {% endblock %}

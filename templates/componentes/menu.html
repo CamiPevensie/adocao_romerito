@@ -1,10 +1,12 @@
-{% if session.get('usuario_nome') %}
-    <span>Bem-vindo, {{ session.get('usuario_nome') }}!</span>
-    <a href="{{ url_for('auth.logout') }}">Sair</a>
-{% else %}
-    <a href="{{ url_for('auth.cadastro') }}">Cadastro</a>
-    <a href="{{ url_for('auth.login') }}">Login</a>
-{% endif %}
+<div class="menu">
+    {% if session.get('usuario_nome') %}
+        <span>Bem-vindo, {{ session.get('usuario_nome') }}!</span>
+        <a href="{{ url_for('auth.logout') }}">Sair</a>
+    {% else %}
+        <a href="{{ url_for('auth.cadastro') }}">Cadastro</a>
+        <a href="{{ url_for('auth.login') }}">Login</a>
+    {% endif %}
 
-<a href="{{ url_for('animais.animais') }}">Animais</a>
-<a href="{{ url_for('animais.cadastrar_animal') }}">Cadastrar Animal</a>
+    <a href="{{ url_for('animais.animais') }}">Animais</a>
+    <a href="{{ url_for('animais.cadastrar_animal') }}">Cadastrar Animal</a>
+</div>

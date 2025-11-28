@@ -8,7 +8,7 @@ interesse_bp = Blueprint("interesse", __name__)
 
 # Página para solicitar adoção de um animal
 @interesse_bp.route('/interesse/<int:animal_id>', methods=['GET', 'POST'])
-def solicitar_interesse(animal_id):
+def interesse(animal_id):
     if 'usuario_id' not in session:
         flash("Você precisa estar logado para adotar.", "warning")
         return redirect(url_for('auth.login'))
@@ -21,20 +21,16 @@ def solicitar_interesse(animal_id):
 
         if request.method == 'POST':
             endereco = request.form['endereco_form']
-            condicoes = request.form['condicoes_form']
-            motivacao = request.form['motivacao_form']
 
             interesse = Interesse(
                 usuario_id=session['usuario_id'],
                 animal_id=animal.id,
                 endereco=endereco,
-                condicoes_economicas=condicoes,
-                motivacao=motivacao
             )
             sessao.add(interesse)
             sessao.commit()
 
-            flash("Solicitação enviada! aguarde avaliação do administrador.", "success")
+            flash("Interesse de adoção arquivado!.", "success")
             return redirect(url_for('animais.animais'))
 
-    return render_template('solicitar_interesse.html', animal=animal)
+    return render_template('interesse.html', animal=animal)

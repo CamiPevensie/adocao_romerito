@@ -7,10 +7,7 @@ class Interesse(Base):
     id = Column(Integer, primary_key=True)
     usuario_id = Column(Integer, ForeignKey('usuarios.id'), nullable=False)
     animal_id = Column(Integer, ForeignKey('animais.id'), nullable=False)
-    endereco = Column(String(320), nullable=False)
-    condicoes_economicas = Column(String(320), nullable=False)
-    motivacao = Column(String(500), nullable=False)
-    status = Column(String(20), default='pendente')  # pendente, aprovado, negado
+    status = Column(String(20), default='pendente')
 
     usuario = relationship("Usuario")
     animal = relationship("Animal")
