@@ -3,19 +3,36 @@
 
 {% block conteudo %}
 
-<h1>Cadastre-se</h1>
-<form action="" method="post">
-    Nome <input type="text" name="nome_form">
-    Nome completo <input type="text" name="nome_completo_form">
-    Telefone para contato <input type="text" name="telefone_form">
-    Email <input type="email" name="email_form">
-    Senha <input type="password" name="senha_form">
-    Rua <input type="text" name="rua_form">
-    Bairro <input type="text" name="bairro_form">
-    Cidade <input type="text" name="cidade_form">
-    Numero <input type="text" name="numero_form">
-    Complemento <input type="text" name="complemento_form">
-    Estado <input type="text" name="estado_form">
-    <input type="submit" value="Enviar">
-</form>
+<div class="container">
+    <form action="" method="post">
+        <h1>Formulário de Cadastro</h1>
+        Nome <input type="text" name="nome_form">
+        Nome completo <input type="text" name="nome_completo_form">
+        <div class="linha">
+            Telefone para contato <input type="text" name="telefone_form">
+            Email <input type="email" name="email_form"> 
+        </div>       
+        Senha <input type="password" name="senha_form">
+        <div class="linha">
+            Rua <input type="text" name="rua_form">
+            Bairro <input type="text" name="bairro_form">
+        </div>
+        <div class="linha">
+            Cidade <input type="text" name="cidade_form">
+            Numero <input type="text" name="numero_form">
+        </div>
+        <div class="linha">
+            Complemento <input type="text" name="complemento_form">
+            Estado <input type="text" name="estado_form">
+        </div>
+        <input type="submit" value="Enviar">
+    </form>
+    <div class="img">
+        <img src="../static/img/mulher com cachorro.png" alt="">
+    </div>
+
+</div>
+
+
 {% endblock %}
+

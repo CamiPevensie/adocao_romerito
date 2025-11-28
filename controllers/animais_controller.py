@@ -15,7 +15,6 @@ def cadastrar_animal():
         idade = int(request.form['idade_form'])
         sexo = request.form['sexo_form']
         porte = request.form['porte_form']
-        # Checkbox retorna 'on' se marcado, None se desmarcado
         vacinado = request.form.get('vacinado_form') == 'on'
         vacinas_tomadas = request.form['vacinas_tomadas_form']
         sobre = request.form['sobre_form']
@@ -26,20 +25,20 @@ def cadastrar_animal():
 
         foto_animal = request.files['foto_animal_form']
 
-        #salvando a fotinha do animalzinho
-        caminho_foto = os.path.join('static/uploads',foto_animal.filename)
+        caminho_foto = os.path.join('static/uploads', str(foto_animal.filename))
         foto_animal.save(caminho_foto)
-        ## terminar a parte de foto
-        animal = Animal(nome=nome, raca=raca, idade=idade,sexo=sexo,porte=porte,vacinado=vacinado,vacinas_tomadas=vacinas_tomadas,sobre=sobre,localizacao=localizacao,
-        nome_protetor=nome_protetor, telefone_contato=telefone_contato, email_contato=email_contato, foto=foto)
 
-        # Adiciona ao banco de dados
+        animal = Animal(nome=nome,raca=raca,idade=idade,sexo=sexo,porte=porte,vacinado=vacinado,vacinas_tomadas=vacinas_tomadas,
+        sobre=sobre,localizacao=localizacao,nome_protetor=nome_protetor,
+        telefone_contato=telefone_contato,email_contato=email_contato,foto=caminho_foto 
+        )
+
         with Sessao_base() as sessao:
             sessao.add(animal)
             sessao.commit()
 
         flash("Animal cadastrado com sucesso!", "success")
-        return redirect(url_for('animais.animais'))
+        return redirect(url_for('animais.animais_para_adocao'))
 
     return render_template('cadastrar_animal.html')
 

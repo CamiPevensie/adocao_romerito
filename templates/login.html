@@ -2,11 +2,16 @@
 {% block titulo %} login {% endblock %}
 
 {% block conteudo %}
-<h1>Faça login</h1>
 
-<form action="{{url_for('auth.login')}}" method="post">
-    Email: <input type="email" name="email_form">
-    Senha: <input type="password" name="senha_form">
-    <input type="submit" value="Enviar">
-</form>
+<div class="container">
+    <form action="{{url_for('auth.login')}}" method="post">
+        <h1>Faça login</h1>
+        Email: <input type="email" name="email_form">
+        Senha: <input type="password" name="senha_form">
+        <input type="submit" value="Enviar">
+    </form>
+    <div class="img">
+        <img src="../static/img/cachorrinho.png" alt="">
+    </div>
+</div>
 {% endblock %}

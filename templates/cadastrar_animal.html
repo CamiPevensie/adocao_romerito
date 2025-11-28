@@ -3,22 +3,36 @@
 
 {% block conteudo %}
 
-<form action="{{ url_for('animais.cadastrar_animal') }}" method="POST">
-    Nome: <input type="text" name="nome_form">
-    Raça: <input type="text" name="raca_form">
-    Idade: <input type="number" name="idade_form">
-    Sexo: <input type="text" name="sexo_form"> 
-    Porte: <input type="text" name="porte_form">
-    Vacinado? <input type="checkbox" name="vacinado_form">
-    Vacinas tomadas: <input type="text" name="vacinas_tomadas_form">
-    Sobre: <input type="text" name="sobre_form">
-    Localização: <input type="text" name="localizacao_form">
-    Nome do protetor: <input type="text" name="nome_protetor_form">
-    Telefone para contato: <input type="text" name="telefone_contato_form">
-    Email contato: <input type="text" name="email_contato_form">
-    <input type="file" name="foto_animal_form">
-    <input type="submit" value="Enviar">
-</form>
-
+<div class="container" style="width: 100%;">
+    <img 
+    src="../static/img/add.png" 
+    width="150" 
+    alt="Adicionar imagem"
+    style="cursor: pointer; width: 25%;"
+    onclick="document.getElementById('foto').click()">
+    <input type="file" id="foto" name="foto_animal_form" style="display: none;">
+    <form action="{{ url_for('animais.cadastrar_animal') }}" method="POST">
+        <h1 style="margin-top: 1px; margin-bottom: 1px;">Coloque-me para adoção!</h1>
+        Nome: <input type="text" name="nome_form">
+        Raça: <input type="text" name="raca_form">
+        <div class="linha">
+            Idade: <input type="number" name="idade_form">
+            Sexo: <input type="text" name="sexo_form"> 
+            Porte: <input type="text" name="porte_form">
+        </div>
+        <div class="linha">
+        Vacinado? <input type="checkbox" name="vacinado_form">
+        Vacinas tomadas: <input type="text" name="vacinas_tomadas_form">
+        Sobre: <input type="text" name="sobre_form">
+        </div>
+        Localização: <input type="text" name="localizacao_form">
+        <div class="linha">
+            Nome do protetor: <input type="text" name="nome_protetor_form">
+            Telefone para contato: <input type="text" name="telefone_contato_form">
+        </div>
+        Email contato: <input type="text" name="email_contato_form">
+        <input type="submit" value="Enviar">
+    </form>
+    </div>
 
 {% endblock %}

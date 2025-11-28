@@ -1,11 +1,100 @@
-* {
-    margin: 0;
-    background-color: #f0f1f5;
-};
 
-.menu {
-    background-color: #13442f;
-    display: flex;
-    height: 5%;
+body {
+    background-color: #f1f1f1;
+    margin: 0;
 }
 
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #13442f;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+
+.logo img {
+    width: 120px;
+    height: auto;
+}
+
+.lado-dir img {
+    width: 120px;
+    height: auto;
+}
+
+
+.menu a, .menu span {
+  white-space: nowrap; 
+  color: red;
+}
+
+.logo {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    justify-content: space-evenly;
+    gap: 10px; 
+    max-height: 95%;
+    align-items: flex-start;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.container form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    height: 500px;
+    width: 55%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.container form input {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.container form input[type="submit"] {
+    background-color: #0B6623;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    width: 150px;
+}
+
+.img img {
+    height: 543px;
+    margin-top: 0; 
+    /* border-radius: 10px;
+    object-fit: cover; */
+}
+
+.linha {
+    display: flex;
+    gap: 10px;
+}
+
+.linha input {
+    display: inline-block;
+    width: 100%;
+    flex: 1;
+}
+
+.cinza {
+    background-color: #e5e5e5;
+    padding: 12px;
+    border-radius: 8px;
+    width: fit-content; 
+}
