@@ -1,7 +1,11 @@
 {% extends 'base.html'%}
 {% block titulo %} Index {% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">{% endblock %}
 
 {% block conteudo %}
+    <div class="img">
+        <img src="../static/img/cachorro-e-gato.png" alt="">
+    </div>
 
 {% for animal in animais %}
     <a href="{{url_for('animais.ver_animal')}}">

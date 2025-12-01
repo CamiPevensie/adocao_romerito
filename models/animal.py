@@ -14,6 +14,7 @@ class Animal(Base):
     vacinado: Mapped[bool] = mapped_column(Boolean, nullable=False)
     vacinas_tomadas: Mapped[str] = mapped_column(String(320), nullable=False)
     sobre: Mapped[str] = mapped_column(String(320), nullable=False)
+    foto: Mapped[str] = mapped_column(String(700), nullable=False)
     localizacao: Mapped[str] = mapped_column(String(100), nullable=False)
     nome_protetor: Mapped[str] = mapped_column(String(320), nullable=False)
     telefone_contato: Mapped[str] = mapped_column(String(15), nullable=False)

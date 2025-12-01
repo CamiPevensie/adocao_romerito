@@ -23,15 +23,11 @@ def cadastrar_animal():
         telefone_contato = request.form['telefone_contato_form']
         email_contato = request.form['email_contato_form']
 
-        foto_animal = request.files['foto_animal_form']
-
-        caminho_foto = os.path.join('static/uploads', str(foto_animal.filename))
-        foto_animal.save(caminho_foto)
+        foto_animal = request.form['foto_form']
 
         animal = Animal(nome=nome,raca=raca,idade=idade,sexo=sexo,porte=porte,vacinado=vacinado,vacinas_tomadas=vacinas_tomadas,
         sobre=sobre,localizacao=localizacao,nome_protetor=nome_protetor,
-        telefone_contato=telefone_contato,email_contato=email_contato,foto=caminho_foto 
-        )
+        telefone_contato=telefone_contato,email_contato=email_contato,foto=foto_animal)
 
         with Sessao_base() as sessao:
             sessao.add(animal)

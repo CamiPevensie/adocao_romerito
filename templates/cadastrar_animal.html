@@ -1,16 +1,13 @@
 {% extends 'base.html'%}
 {% block titulo %} Formulário {% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='cadastro_animal.css') }}">{% endblock %}
 
 {% block conteudo %}
 
 <div class="container" style="width: 100%;">
-    <img 
-    src="../static/img/add.png" 
-    width="150" 
-    alt="Adicionar imagem"
-    style="cursor: pointer; width: 25%;"
-    onclick="document.getElementById('foto').click()">
-    <input type="file" id="foto" name="foto_animal_form" style="display: none;">
+    <div class="img">
+        <img src="../static/img/1-adocao.jpg" alt="">
+    </div>
     <form action="{{ url_for('animais.cadastrar_animal') }}" method="POST">
         <h1 style="margin-top: 1px; margin-bottom: 1px;">Coloque-me para adoção!</h1>
         Nome: <input type="text" name="nome_form">
@@ -23,8 +20,9 @@
         <div class="linha">
         Vacinado? <input type="checkbox" name="vacinado_form">
         Vacinas tomadas: <input type="text" name="vacinas_tomadas_form">
-        Sobre: <input type="text" name="sobre_form">
         </div>
+        Sobre: <input type="text" name="sobre_form">
+        Foto (Link para uma foto do animal): <input type="text" name="foto_form">
         Localização: <input type="text" name="localizacao_form">
         <div class="linha">
             Nome do protetor: <input type="text" name="nome_protetor_form">

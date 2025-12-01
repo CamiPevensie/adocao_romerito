@@ -14,12 +14,6 @@ body {
     height: auto;
 }
 
-
-.menu a, .menu span {
-  white-space: nowrap; 
-  color: red;
-}
-
 .logo {
   display: flex;
   justify-content: space-between;
@@ -28,30 +22,30 @@ body {
 
 .container {
     display: flex;
-    align-items: flex-start;
     justify-content: center;
-    justify-content: space-evenly;
-    gap: 10px; 
-    max-height: 95%;
-    align-items: flex-start;
-    max-width: 100%;
-    margin: 0 auto;
+    align-items: center;
+    justify-self: center;
+    gap: 40px;
+    width: 90%;
 }
 
 .container form {
     background: #fff;
-    padding: 20px;
     border-radius: 10px;
-    height: 500px;
-    width: 55%;
+    width: 60%;
+    height: 70%;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 2%;
+    justify-content: center;
+}
+
+.container form h1 {
+    text-align: center;
 }
 
 .container form input {
-    padding: 8px;
     border-radius: 6px;
     border: 1px solid #ccc;
 }
@@ -66,8 +60,10 @@ body {
 }
 
 .img img {
-    height: 543px;
+    height: 620px;
     margin-top: 0; 
+    /* border-radius: 10px;
+    object-fit: cover; */
 }
 
 .linha {

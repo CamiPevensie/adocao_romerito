@@ -6,6 +6,9 @@
     <title>{% block titulo %} {% endblock %}</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=2">
+    <link rel="stylesheet" href="{{ url_for('static', filename='menu.css') }}">
+
+    {% block extra_css %}{% endblock %}
 
 <body>
     {% include 'componentes/menu.html' %}

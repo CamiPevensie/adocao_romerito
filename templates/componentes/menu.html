@@ -1,21 +1,14 @@
-
-<div class="menu">
+<nav class="menu">
     <div class="logo">
-        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo">
     </div>
-    
-    {% if session.get('usuario_nome') %}
-        <span>Bem-vindo, {{ session.get('usuario_nome') }}!</span>
-        <a href="{{ url_for('auth.logout') }}">Sair</a>
-    {% else %}
-        <a href="{{ url_for('auth.cadastro') }}">Cadastro</a>
-        <a href="{{ url_for('auth.login') }}">Login</a>
-    {% endif %}
 
-    <a href="{{ url_for('animais.animais_para_adocao') }}">Animais</a>
-    <a href="{{ url_for('animais.cadastrar_animal') }}">Cadastrar Animal</a>
-    
-    <div class="lado-dir">
-        <img src="{{ url_for('static', filename='img/conta.png') }}" alt="">
+    <div class="links">
+        <a href="/auth/cadastro">Cadastro</a>
+        <a href="/auth/login">Login</a>
+        <a href="/animais">Animais</a>
+        <a href="/cadastrar_animal">Cadastrar Animal</a>
+        <a href="/perfil">Meu Perfil</a>
+
     </div>
-</div>
+</nav>
