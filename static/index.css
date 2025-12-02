@@ -22,41 +22,8 @@ body {
 
 .container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-self: center;
-    gap: 40px;
-    width: 90%;
-}
-
-.container form {
-    background: #fff;
-    border-radius: 10px;
-    width: 60%;
-    height: 70%;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    display: flex;
     flex-direction: column;
-    gap: 2%;
-    justify-content: center;
-}
-
-.container form h1 {
-    text-align: center;
-}
-
-.container form input {
-    border-radius: 6px;
-    border: 1px solid #ccc;
-}
-
-.container form input[type="submit"] {
-    background-color: #0B6623;
-    color: white;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    width: 150px;
+    justify-content: flex-start;
 }
 
 .img img {
@@ -64,21 +31,46 @@ body {
     height: auto;
     margin-top: 0; 
 }
-
-.linha {
-    display: flex;
-    gap: 10px;
-}
-
-.linha input {
-    display: inline-block;
-    width: 100%;
-    flex: 1;
-}
-
 .cinza {
     background-color: #e5e5e5;
     padding: 12px;
     border-radius: 8px;
     width: fit-content; 
+}
+
+.animal-card {
+    display: flex;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 15%;
+    flex-direction: column;
+}
+
+.info-animal {
+    max-height: auto;
+    text-align: center;
+}
+
+.animal-card img {
+    padding-top: 15px;
+    max-width: 60%;
+    height: auto;
+}
+
+.foto-animal {
+    display: flex;
+    max-height: 60%;
+    align-content: center;
+    justify-content: center;
+}
+
+.titulo1 {
+    color:#0B6623;
+
+}
+
+.animais {
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
 }

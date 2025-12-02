@@ -3,20 +3,29 @@
 {% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">{% endblock %}
 
 {% block conteudo %}
-    <div class="img">
-        <img src="../static/img/cachorro-e-gato.png" alt="">
+<div class="img">
+        <img src="../static/img/cachorrro-e-gato.svg" alt="">
     </div>
+<div class="container">
+    <h1 class="titulo1">ANIMAIS PARA ADOÇÃO</h1>
+    <div class="animais">
+       {% for animal in animais %}
+            <div class="animal-card">
+                <div class="foto-animal">
+                    <img src="{{ animal.foto }}" alt="">
+                </div>
 
-{% for animal in animais %}
-    <a href="{{url_for('animais.ver_animal')}}">
-        <div class="animal-card">
-            <h3>{{ animal.nome }}</h3>
-            <p>Raça: {{ animal.raca }}</p>
-            <p>Idade: {{ animal.idade }} anos</p>
-            <p>Localização: {{ animal.localizacao }} anos</p>
-        </div>
-    </a>
-{% endfor %}
-
+                <div class="info-animal">
+                <h3>{{ animal.nome }}</h3>
+                <p>Raça: {{ animal.raca }}</p>
+                <p>Idade: {{ animal.idade }} anos</p>
+                <p>Localização: {{ animal.localizacao }} anos</p> 
+                </div>
+            </div>
+        </a>
+        {% endfor %} 
+    </div>
+    
+</div>
 
 {% endblock %}
