@@ -22,7 +22,7 @@ app.register_blueprint(autenticacao_bp, url_prefix="/auth")
 app.register_blueprint(animais_bp, url_prefix="/")
 app.register_blueprint(interesse_bp, url_prefix="/")
 app.register_blueprint(adocao_bp, url_prefix="/")
-app.register_blueprint(usuario_bp, url_prefix="/animais")
+app.register_blueprint(usuario_bp, url_prefix="/")
 
 if __name__ == '__main__':
     app.run(debug=True)

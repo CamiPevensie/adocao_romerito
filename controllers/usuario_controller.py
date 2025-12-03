@@ -4,14 +4,13 @@ from models.usuario import Usuario
 
 usuario_bp = Blueprint('usuario',__name__)
 
-@usuario_bp.route('/perfil/<int: usuario_id>', methods=['GET,''POST'])
-def perfil(animal_id):
+@usuario_bp.route('/perfil/<int:usuario_id>', methods=['GET,''POST'])
+def perfil(usuario_id):
     # Se o usuário não estiver logado
     if 'usuario_id' not in session:
         flash("Faça login para continuar.", "warning")
         return redirect(url_for('auth.login'))
 
-
-    
     with Sessao_base() as sessao:
-        perfil = sessao.query(Usuario).filter(Usuario.id == animal_id).first()
+        perfil = sessao.query(Usuario).filter(Usuario.id == usuario_id).first()
+        return render_template('perfil.html')
