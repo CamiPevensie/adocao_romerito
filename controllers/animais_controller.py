@@ -7,6 +7,14 @@ import os
 from werkzeug.utils import secure_filename
 animais_bp = Blueprint("animais", __name__)
 
+
+@animais_bp.route('/', methods=['GET'])
+def animais():
+    with Sessao_base() as sessao:
+        animais = sessao.query(Animal).all()
+        return render_template('animais.html', animais=animais)
+
+
 @animais_bp.route('/cadastrar_animal', methods=['GET', 'POST'])
 def cadastrar_animal():
     if request.method == 'POST':
@@ -57,7 +65,7 @@ def ver_animal(animal_id):
 
         if not animal:
             flash("Animal não encontrado.", "danger")
-            return redirect(url_for('animais.animais'))
+            return redirect(url_for('animais.ver_animal',animal_id=animal_id))
 
         # Botões (interesse ou adotar)
         if request.method == 'POST':

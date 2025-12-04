@@ -6,6 +6,7 @@ autenticacao_bp = Blueprint("auth", __name__)
 
 @autenticacao_bp.route("/login", methods=["GET", "POST"])
 def login():
+    erro = None
     if request.method == 'POST':
         email = request.form['email_form']
         senha = request.form['senha_form']
@@ -13,11 +14,11 @@ def login():
         with Sessao_base() as sessao:
             usuario = sessao.query(Usuario).filter_by(email=email).first()
             print(usuario)
-            if usuario and usuario.senha == senha:
-                return f"Login bem-sucedido! Bem-vindo {usuario.nome}!"
-            else:
-                return "Usuário ou senha inválidos"
-    return render_template('login.html')
+        if usuario and usuario.senha == senha:
+            return render_template('perfil.html')
+        else:
+            erro = "Usuário ou senha inválidos"
+    return render_template('login.html', erro=erro)
 
 @autenticacao_bp.route('/cadastro', methods = ['GET','POST'])
 def cadastro():
