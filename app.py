@@ -19,10 +19,17 @@ def index():
     return render_template('index.html', animais=animais)
 
 app.register_blueprint(autenticacao_bp, url_prefix="/auth")
+<<<<<<< HEAD
 app.register_blueprint(animais_bp, url_prefix="/animais")
 app.register_blueprint(interesse_bp, url_prefix="/interesse")
 app.register_blueprint(adocao_bp, url_prefix="/adocao")
 app.register_blueprint(usuario_bp, url_prefix="/usuario")
+=======
+app.register_blueprint(animais_bp, url_prefix="/")
+app.register_blueprint(interesse_bp, url_prefix="/")
+app.register_blueprint(adocao_bp, url_prefix="/")
+app.register_blueprint(usuario_bp, url_prefix="/")
+>>>>>>> 6c3ccc067237d6246929402091b11e3bb5e74a23
 
 if __name__ == '__main__':
     app.run(debug=True)
