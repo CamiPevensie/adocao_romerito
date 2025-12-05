@@ -14,6 +14,11 @@ def animais():
         animais = sessao.query(Animal).all()
         return render_template('animais.html', animais=animais)
 
+@animais_bp.route('/detalhes_animal/<int:animal_id>', methods=['GET'])
+def detalhes_animal(animal_id):
+    with Sessao_base() as sessao:
+        animal = sessao.query(Animal).get(animal_id)
+        return render_template('detalhes_animal.html', animal=animal)
 
 @animais_bp.route('/cadastrar_animal', methods=['GET', 'POST'])
 def cadastrar_animal():

@@ -88,3 +88,8 @@ body {
     flex-direction: row;
     gap: 5%;
 }
+
+.card_link{
+    text-decoration: none;
+    color: inherit;
+}

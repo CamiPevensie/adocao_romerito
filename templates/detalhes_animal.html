@@ -1,0 +1,36 @@
+{% extends 'base.html'%}
+{% block titulo %} Formulário {% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='cadastro_animal.css') }}">{% endblock %}
+
+{% block conteudo %}
+
+<div class="container" style="width: 100%;">
+    <div class="img">
+        <div class="foto-animal">
+            <img src="{{ animal.foto }}" alt="">
+        </div>
+    </div>
+    <form action="{{ url_for('animais.detalhes_animal', animal_id=animal.id) }}" method="GET">
+        <h1 style="margin-top: 1px; margin-bottom: 1px;">Coloque-me para adoção!</h1>
+        Nome: <input type="text" value="{{ animal.nome }}" readonly style="pointer-events: none;">
+        Raça: <input type="text" value="{{ animal.raca }}" readonly style="pointer-events: none;">
+        <div class="linha">
+            Idade: <input type="text" value="{{ animal.idade }}" readonly style="pointer-events: none;">
+            Sexo: <input type="text" value="{{ animal.sexo }}" readonly style="pointer-events: none;">
+            Porte: <input type="text" value="{{ animal.porte }}" readonly style="pointer-events: none;">
+        </div>
+        <div class="linha">
+        Vacinado? <input type="text" value="{{ animal.vacinado }}" readonly style="pointer-events: none;">
+        Vacinas tomadas: <input type="text" value="{{ animal.vacinas_tomadas }}" readonly style="pointer-events: none;">
+        </div>
+        Sobre: <input type="text" value="{{ animal.sobre }}" readonly style="pointer-events: none;">
+        Localização: <input type="text" value="{{ animal.localizacao }}" readonly style="pointer-events: none;">
+        <div class="linha">
+            Nome do protetor: <input type="text" value="{{ animal.nome_protetor }}" readonly style="pointer-events: none;">
+            Telefone para contato: <input type="text" value="{{ animal.telefone_contato }}" readonly style="pointer-events: none;">
+        </div>
+        Email contato: <input type="text" value="{{ animal.email_contato }}" readonly style="pointer-events: none;">
+    </form>
+    </div>
+
+{% endblock %}
