@@ -42,7 +42,8 @@ body {
     display: flex;
     background-color: white;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    max-width: 15%;
+    width: 300px;
+    height: 400px;
     flex-direction: column;
 }
 
@@ -52,17 +53,29 @@ body {
 }
 
 .animal-card img {
+    display: flex;
     padding-top: 15px;
     max-width: 60%;
-    height: auto;
+    height:fit-content;
+    justify-self: center;
+    align-self: center;
 }
+
+.imagem-animal {
+    display: flex;
+    background-color: black;
+    height: 90%;
+    width: 60%;
+    justify-self: center;
+    align-self: center;
+}
+
 
 .foto-animal {
     display: flex;
-    max-height: 60%;
+    height: 60%;
     align-content: center;
     justify-content: center;
-    
 }
 
 .titulo1 {
