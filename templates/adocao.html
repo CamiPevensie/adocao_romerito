@@ -1,32 +1,23 @@
-{% extends 'base.html'%}
-{% block titulo %} animais {% endblock %}
+{% extends 'base.html' %}
 
-{% block conteudo %}
-
-<h1>é pra exibir os animais para adocao</h1>
-{% extends 'base.html'%}
-{% block titulo %} animais {% endblock %}
+{% block titulo %}Adoções{% endblock %}
 {% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">{% endblock %}
 
 {% block conteudo %}
 
-<h1>é pra exibir os animais</h1>
-    <div class="animais">
-       {% for animal in animais %}
-            <div class="animal-card">
-                <div class="foto-animal">
-                    <img src="{{ animal.foto }}" alt="">
-                </div>
+<h1>ADOÇÕES</h1>
 
-                <div class="info-animal">
-                <h3>{{ animal.nome }}</h3>
-                <p>Raça: {{ animal.raca }}</p>
-                <p>Idade: {{ animal.idade }} anos</p>
-                <p>Localização: {{ animal.localizacao }} anos</p> 
-                </div>
-            </div>
-        </a>
-        {% endfor %} 
+<div class="container">
+<div class="animais">
+    {% for adocao in adocoes %}
+    <div class="animal-card">
+        <img src="{{ adocao.animal.foto }}">
+        <h3>{{ adocao.animal.nome }}</h3>
+        <p>{{ adocao.animal.raca }}</p>
+        <p>{{ adocao.animal.idade }} anos</p>
     </div>
-{% endblock %}
+    {% endfor %}
+</div>
+</div>
+
 {% endblock %}

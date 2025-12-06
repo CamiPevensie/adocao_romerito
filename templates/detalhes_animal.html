@@ -30,7 +30,20 @@
             Telefone para contato: <input type="text" value="{{ animal.telefone_contato }}" readonly style="pointer-events: none;">
         </div>
         Email contato: <input type="text" value="{{ animal.email_contato }}" readonly style="pointer-events: none;">
+        
     </form>
-    </div>
+    <form action="{{ url_for('adocao.adotar', animal_id=animal.id) }}" method="POST">
+    <button type="submit" style="color:white; background:brown;">
+        ADOTAR AGORA
+    </button>
+    </form>
+
+        <!-- <form method="POST">
+            <input type="hidden" name="acao" value="interesse">
+            <button type="submit" style="color:white; background:blue;">
+            ANIMAIS DE INTERESSE
+            </button>
+        </form> -->
+</div>
 
 {% endblock %}

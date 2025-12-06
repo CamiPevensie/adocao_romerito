@@ -9,6 +9,11 @@ body {
     height: auto;
 }
 
+.container {
+    height: 45%;
+    margin: 0 auto;
+}
+
 .lado-dir img {
     width: 120px;
     height: auto;

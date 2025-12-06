@@ -52,13 +52,13 @@ body {
     text-align: center;
 }
 
-.animal-card img {
-    display: flex;
-    padding-top: 15px;
-    max-width: 60%;
-    height:fit-content;
-    justify-self: center;
-    align-self: center;
+.animal-card img { 
+    display: flex; 
+    padding-top: 15px; 
+    max-width: 60%; 
+    height:fit-content; 
+    justify-self: center; 
+    align-self: center; 
 }
 
 .imagem-animal {

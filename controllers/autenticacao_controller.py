@@ -10,12 +10,13 @@ def login():
     if request.method == 'POST':
         email = request.form['email_form']
         senha = request.form['senha_form']
-
+        
         with Sessao_base() as sessao:
             usuario = sessao.query(Usuario).filter_by(email=email).first()
             print(usuario)
         if usuario and usuario.senha == senha:
-            return render_template('perfil.html')
+            session['usuario_id'] = usuario.id
+            return render_template('perfil.html', usuario=usuario)
         else:
             erro = "Usuário ou senha inválidos"
     return render_template('login.html', erro=erro)
