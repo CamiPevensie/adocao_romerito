@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
 {% block titulo %} Formulário {% endblock %}
-{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='cadastro_animal.css') }}">{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='detalhes_animal.css') }}">{% endblock %}
 
 {% block conteudo %}
 
@@ -11,7 +11,7 @@
         </div>
     </div>
     <form action="{{ url_for('animais.detalhes_animal', animal_id=animal.id) }}" method="GET">
-        <h1 style="margin-top: 1px; margin-bottom: 1px;">Coloque-me para adoção!</h1>
+        <h1 style="margin-top: 1px; margin-bottom: 1px;">Sobre mim:</h1>
         Nome: <input type="text" value="{{ animal.nome }}" readonly style="pointer-events: none;">
         Raça: <input type="text" value="{{ animal.raca }}" readonly style="pointer-events: none;">
         <div class="linha">
@@ -30,13 +30,11 @@
             Telefone para contato: <input type="text" value="{{ animal.telefone_contato }}" readonly style="pointer-events: none;">
         </div>
         Email contato: <input type="text" value="{{ animal.email_contato }}" readonly style="pointer-events: none;">
-        
+        <form action="{{ url_for('adocao.adotar', animal_id=animal.id) }}" method="POST" class="botoes">
+            <button type="submit" style="color:white; background:brown;">ADOTAR AGORA</button>
+        </form>
     </form>
-    <form action="{{ url_for('adocao.adotar', animal_id=animal.id) }}" method="POST">
-    <button type="submit" style="color:white; background:brown;">
-        ADOTAR AGORA
-    </button>
-    </form>
+    
 
         <!-- <form method="POST">
             <input type="hidden" name="acao" value="interesse">
