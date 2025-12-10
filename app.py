@@ -24,5 +24,8 @@ app.register_blueprint(interesse_bp, url_prefix="/interesse")
 app.register_blueprint(adocao_bp, url_prefix="/adocao")
 app.register_blueprint(usuario_bp, url_prefix="/usuario")
 
+print("ROTAS REGISTRADAS:")
+print(app.url_map)
+
 if __name__ == '__main__':
     app.run(debug=True)

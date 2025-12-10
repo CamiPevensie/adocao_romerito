@@ -1,6 +1,6 @@
 <nav class="menu">
     <div class="logo">
-        <a href="../"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo"></a>
+        <a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo"></a>
     </div>
 
     <div class="links">
@@ -8,8 +8,8 @@
         <a href="/auth/login">Login</a>
         <a href="/animais">Animais</a>
         <a href="/animais/cadastrar_animal">Cadastrar Animal</a>
-        <a href="/perfil">Meu Perfil</a>
-        <a href="/animais/animais_adocao_cadastrar">Adoções</a>
+        <!-- <a href="{{ url_for('usuario.perfil', usuario_id=session.get('usuario_id')) }}">Meu Perfil</a> -->
+        <a href="{{ url_for('adocao.animais_adocoes_usuario') }}">Adoções</a>
 
     </div>
 </nav>

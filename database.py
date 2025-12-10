@@ -1,12 +1,13 @@
-from sqlalchemy import create_engine, Column, String, Integer, Float, Boolean
+from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-# Cria a engine (faz a conexão com o banco)
+# Base dos modelos
+Base = declarative_base()
+
+# Criação da engine (APÓS os models serem importados no app principal)
 engine = create_engine('sqlite:///dados.db', echo=True)
 
-# Cria a sessão
+# Sessão
 Sessao_base = sessionmaker(bind=engine, autoflush=False, autocommit=False, expire_on_commit=False)
 
-
-# Cria a base dos modelos (Usuario, Animal, etc.)
-Base = declarative_base()
+Base.metadata.create_all(engine)
