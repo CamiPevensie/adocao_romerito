@@ -4,7 +4,7 @@ from models.usuario import Usuario
 
 usuario_bp = Blueprint('usuario',__name__)
 
-@usuario_bp.route('/perfil/<int:usuario_id>', methods=['GET,''POST'])
+@usuario_bp.route('/perfil/<int:usuario_id>', methods=['GET','POST'])
 def perfil(usuario_id):
     # Se o usuário não estiver logado
     if 'usuario_id' not in session:

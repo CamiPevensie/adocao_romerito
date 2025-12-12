@@ -8,8 +8,12 @@
         <a href="/auth/login">Login</a>
         <a href="/animais">Animais</a>
         <a href="/animais/cadastrar_animal">Cadastrar Animal</a>
-        <!-- <a href="{{ url_for('usuario.perfil', usuario_id=session.get('usuario_id')) }}">Meu Perfil</a> -->
         <a href="{{ url_for('adocao.animais_adocoes_usuario') }}">Adoções</a>
+
+        {% if session.get('usuario_id') %}
+            <a href="{{ url_for('usuario.perfil', usuario_id=session.get('usuario_id')) }}">Meu Perfil</a>
+        {% endif %}
+
 
     </div>
 </nav>
