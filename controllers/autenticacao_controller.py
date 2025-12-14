@@ -21,26 +21,38 @@ def login():
             erro = "Usuário ou senha inválidos"
     return render_template('login.html', erro=erro)
 
-@autenticacao_bp.route('/cadastro', methods = ['GET','POST'])
+from flask import request, flash, redirect, url_for
+
+@autenticacao_bp.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
     if request.method == 'POST':
-        nome = request.form['nome_form']
-        nome_completo = request.form['nome_completo_form']
-        telefone = request.form['telefone_form']
-        email = request.form['email_form']
-        senha = request.form['senha_form']
-        rua = request.form['rua_form']
-        bairro = request.form['bairro_form']
-        cidade = request.form['cidade_form']
-        numero = request.form['numero_form']
-        complemento = request.form['complemento_form']
-        estado = request.form['estado_form']
+        nome = request.form['nome_form'].strip()
+        nome_completo = request.form['nome_completo_form'].strip()
+        telefone = request.form['telefone_form'].strip()
+        email = request.form['email_form'].strip()
+        senha = request.form['senha_form'].strip()
+        rua = request.form['rua_form'].strip()
+        bairro = request.form['bairro_form'].strip()
+        cidade = request.form['cidade_form'].strip()
+        numero = request.form['numero_form'].strip()
+        complemento = request.form['complemento_form'].strip()
+        estado = request.form['estado_form'].strip()
 
-        usuario = Usuario(nome=nome, nome_completo=nome_completo, telefone=telefone, email=email, senha=senha, rua=rua, bairro=bairro, cidade=cidade, numero=numero, complemento=complemento, estado=estado)
+        campos_obrigatorios = [nome, nome_completo, telefone, email, senha,rua, bairro, cidade, numero, estado]
+
+        for campo in campos_obrigatorios:
+            if not campo:
+                flash('Preencha todos os campos obrigatórios!', 'error')
+                return redirect(url_for('auth.cadastro'))
+
+        usuario = Usuario(nome=nome,nome_completo=nome_completo,telefone=telefone,email=email,senha=senha,rua=rua,bairro=bairro,cidade=cidade,numero=numero,complemento=complemento,estado=estado)
+
         with Sessao_base() as sessao:
             sessao.add(usuario)
             sessao.commit()
+
         return redirect(url_for('index'))
+
     return render_template('cadastro.html')
 
 @autenticacao_bp.route('/logout')

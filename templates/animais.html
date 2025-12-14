@@ -1,10 +1,11 @@
 {% extends 'base.html'%}
 {% block titulo %} animais {% endblock %}
-{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='padrao2.css') }}">{% endblock %}
 
 {% block conteudo %}
 
-<h1>Animais para Adoção</h1>
+<div class="container">
+    <h1>Animais para Adoção</h1>
     <div class="animais">
        {% for animal in animais %}
        
@@ -25,4 +26,5 @@
         </a>
         {% endfor %} 
     </div>
+</div>
 {% endblock %}

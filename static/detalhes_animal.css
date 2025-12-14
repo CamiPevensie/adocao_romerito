@@ -8,11 +8,6 @@ body {
     height: auto;
 }
 
-.container {
-    height: 20%;
-    margin: 0 auto;
-}
-
 .container form {
     background: #fff;
     border-radius: 10px;

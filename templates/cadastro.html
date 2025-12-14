@@ -1,10 +1,11 @@
 {% extends 'base.html'%}
 {% block titulo %} Formulário {% endblock %}
-{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='cadastro.css') }}">{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='padrao.css') }}">{% endblock %}
 {% block conteudo %}
 
 <div class="container">
-    <form action="" method="post">
+    <div class="container2">
+        <form action="" method="post">
         <h1>Formulário de Cadastro</h1>
         Nome <input type="text" name="nome_form">
         Nome completo <input type="text" name="nome_completo_form">
@@ -27,10 +28,17 @@
         </div>
         <input type="submit" value="Enviar">
     </form>
-    <div class="img">
-        <img src="../static/img/mulher com cachorro.png" alt="">
+    <div class="img2">
+        <img src="../static/img/mulher com cachorro.png" alt="mulher-com-cachorro">
     </div>
-
+    </div>
+    {% with mensagens = get_flashed_messages(with_categories=true) %}
+        {% if mensagens %}
+            {% for categoria, mensagem in mensagens %}
+            <p class="{{ categoria }}">{{ mensagem }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 </div>
 
 
