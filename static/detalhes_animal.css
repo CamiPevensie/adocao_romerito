@@ -99,83 +99,56 @@ body {
 }
 
 .img2{
-    display: flex;
-    justify-content: center; 
-    align-items:center; 
-    width: 20%;
-}
-
-.img2 img {
+    position: relative;
+    overflow: hidden;
+    width: 375px;
     height: 500px;
     border-radius: 10px;
 
-}
-
-/* --------------------- PÁGINA DE CADASTRO DE ANIMAL ---------------------*/
-
-.container3 {
     display: flex;
     justify-content: center;
-    align-content: center;
-    justify-self: center;
-    align-self: center;
-    width: 100%;
-    height: fit-content;
-    gap: 5%;
-    margin: 50px;
+    align-items: center;
 }
 
-.container3 form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: #fff;
+.img2::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: inherit;
+    background-size: cover;      
+    background-position: center;
+    filter: blur(20px);
+    transform: scale(1.1);       
+    z-index: 1;
+}
+
+.img2 img{
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;         
     border-radius: 10px;
-    width: 50%;
-    height: fit-content;
-    box-shadow: 0 0 12px rgba(0,0,0,0.1);
-    gap: 8px;
-    padding: 15px;}
-
-.container3 form input {
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    padding: 7px;
 }
 
-/* --------------------- PÁGINA DE LOGIN ---------------------*/
-
-.container4 {
+.botoes form{
     display: flex;
     justify-content: center;
-    align-content: center;
-    justify-self: center;
-    align-self: center;
-    width: 100%;
-    height: fit-content;
-    gap: 5%;
+    margin-top: 25px;
 }
 
-.container4 form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: #fff;
-    border-radius: 10px;
-    width: 50%;
-    height: 420px;
-    box-shadow: 0 0 12px rgba(0,0,0,0.1);
-    gap: 8px;
-    padding: 15px;
+.botoes form button{
+    background-color: #0B6623;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    width: 195px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 17px;
 }
 
-.container4 form h1 {
-    text-align: center;
-    color: black;
-}
-
-.container4 form input {
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    padding: 7px;
+.botoes form button:hover{
+    color:rgb(255, 251, 34);
 }

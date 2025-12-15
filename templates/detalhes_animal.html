@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
-{% block titulo %} Formulário {% endblock %}
-{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='padrao.css') }}">{% endblock %}
+{% block titulo %} Detalhes do Animal {% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='detalhes_animal.css') }}">{% endblock %}
 
 {% block conteudo %}
 
@@ -27,7 +27,7 @@
         </div>
             Email contato: <input type="text" value="{{ animal.email_contato }}" readonly style="pointer-events: none;">
     </form>
-    <div class="img2">
+    <div class="img2" style="background-image: url('{{ animal.foto }}')">
             <img src="{{ animal.foto }}" alt="">
     </div>
     </div>

@@ -1,5 +1,5 @@
 {% extends 'base.html'%}
-{% block titulo %} Formulário {% endblock %}
+{% block titulo %} Cadastro de Animal {% endblock %}
 {% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='padrao.css') }}">{% endblock %}
 
 {% block conteudo %}
@@ -8,25 +8,25 @@
     <div class="container3">
     <form action="{{ url_for('animais.cadastrar_animal') }}" method="POST">
         <h1 style="margin-top: 1px; margin-bottom: 1px;">Coloque-me para adoção!</h1>
-        Nome: <input type="text" name="nome_form">
+        Nome: *<input type="text" name="nome_form">
         Raça: <input type="text" name="raca_form">
         <div class="linha">
-            Idade: <input type="number" name="idade_form">
-            Sexo: <input type="text" name="sexo_form"> 
-            Porte: <input type="text" name="porte_form">
+            Idade: * <input type="number" name="idade_form">
+            Sexo: *<input type="text" name="sexo_form"> 
+            Porte: *<input type="text" name="porte_form">
         </div>
         <div class="linha">
-        Vacinado? <input type="checkbox" name="vacinado_form">
-        Vacinas tomadas: <input type="text" name="vacinas_tomadas_form">
+        Vacinado? *<input type="checkbox" name="vacinado_form">
+        Vacinas tomadas: *<input type="text" name="vacinas_tomadas_form">
         </div>
-        Sobre: <input type="text" name="sobre_form">
-        Foto (Link para uma foto do animal): <input type="text" name="foto_form">
-        Localização: <input type="text" name="localizacao_form">
+        Sobre: *<input type="text" name="sobre_form">
+        Foto (Link para uma foto do animal): *<input type="text" name="foto_form">
+        Localização: *<input type="text" name="localizacao_form">
         <div class="linha">
-            Nome do protetor: <input type="text" name="nome_protetor_form">
-            Telefone para contato: <input type="text" name="telefone_contato_form">
+            Nome do protetor: *<input type="text" name="nome_protetor_form">
+            Telefone para contato: *<input type="text" name="telefone_contato_form">
         </div>
-        Email contato: <input type="text" name="email_contato_form">
+        Email contato: *<input type="text" name="email_contato_form">
         <input type="submit" value="Enviar">
     </form>
     <div class="img2">

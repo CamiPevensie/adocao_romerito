@@ -1,5 +1,4 @@
 /* CSS GERALZÃO */
-/* Aqui temos o css do menu e também o css que divide o espaço do menu e do conteúdo (10% pra um e 90% pro outro) */
 
 h1, h2, h3, p, a {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -7,8 +6,8 @@ h1, h2, h3, p, a {
 
 .menu {
     display: flex;
-    height: 10vh;             
-    min-height: 60px;         
+    height: 8vh;             
+    min-height: 50px;         
     width: 100%;
     background: #13442f;
     align-items: center;
@@ -16,6 +15,7 @@ h1, h2, h3, p, a {
     padding: 0 30px;
     box-sizing: border-box;
     position: sticky;
+    top: 0; 
 }
 
 .menu a {
@@ -27,7 +27,7 @@ h1, h2, h3, p, a {
 }
 
 .menu .logo img {
-    width: 120px;
+    width: 150px;
 }
 
 .menu .links {
@@ -55,12 +55,17 @@ h1, h2, h3, p, a {
 }
 
 .success {
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
+  display: flex;
+  background-color: #ace8c0b1;
+  color: #043d17b1;
+  border: 1px solid #c6f5cf;
   padding: 10px 15px;
-  margin: 10px 0;
   border-radius: 6px;
+  width:fit-content;
+  justify-self: center;
+  align-self: center;
+  font-weight: bold;
+  margin-top: 20px;
 }
 
 .error {
@@ -75,4 +80,33 @@ h1, h2, h3, p, a {
   align-self: center;
   font-weight: bold;
   margin-top: 20px;
+}
+
+.outros-links {
+    position: relative;
+}
+
+.outros-links-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #3d762c;
+    min-width: 110px;
+    flex-direction: column;
+    padding: 5px 0;
+    z-index: 1000;
+}
+
+.outros-links:hover .outros-links-menu {
+    display: flex;
+}
+
+.outros-links-menu a {
+    margin: 0;
+    padding: 8px 15px;
+}
+
+.outros-links-menu a:hover {
+    background-color: #3d762c;
 }

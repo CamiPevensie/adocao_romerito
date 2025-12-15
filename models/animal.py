@@ -19,6 +19,9 @@ class Animal(Base):
     nome_protetor: Mapped[str] = mapped_column(String(320), nullable=False)
     telefone_contato: Mapped[str] = mapped_column(String(15), nullable=False)
     email_contato: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
+    usuario_cad_id = mapped_column(Integer, ForeignKey("usuarios.id"), nullable=False)
+
+    usuario = relationship("Usuario")
 
     def __repr__(self):
         return f"<Animal {self.nome}>"
