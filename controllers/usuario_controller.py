@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, url_for, request, redirect, flash, session
 from database import Sessao_base
 from models.usuario import Usuario
+from flask_login import logout_user
 
 usuario_bp = Blueprint('usuario',__name__)
 
@@ -14,3 +15,8 @@ def perfil(usuario_id):
     with Sessao_base() as sessao:
         perfil = sessao.query(Usuario).filter(Usuario.id == usuario_id).first()
         return render_template('perfil.html', usuario=perfil)
+
+# @usuario_bp.route('/logout', methods=["POST", "GET"])
+# def logout():
+#     logout_user()  # encerra a sessão do usuário
+#     return redirect(url_for('index'))

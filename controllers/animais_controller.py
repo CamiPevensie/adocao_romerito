@@ -64,7 +64,7 @@ def cadastrar_animal():
     return render_template('cadastrar_animal.html')
 
 
-@animais_bp.route('/animais_para_adocao', methods=['GET'])
+@animais_bp.route('/animais_adocoes_usuario', methods=['GET'])
 def animais_para_adocao():
     with Sessao_base() as sessao:
         animais = sessao.query(Animal).all()
@@ -74,7 +74,6 @@ def animais_para_adocao():
 @animais_bp.route('/ver_animal/<int:animal_id>', methods=['GET', 'POST'])
 def ver_animal(animal_id):
 
-    # Verificar login
     if 'usuario_id' not in session:
         flash("Faça login para continuar.", "warning")
         return redirect(url_for('auth.login'))
@@ -86,11 +85,9 @@ def ver_animal(animal_id):
             flash("Animal não encontrado.", "danger")
             return redirect(url_for('animais.animais'))
 
-        # Quando o usuário apertar um botão
         if request.method == 'POST':
             acao = request.form.get("acao")
 
-            # --- LISTA DE INTERESSE ---
             if acao == "interesse":
                 existe = sessao.query(Interesse).filter_by(
                     usuario_id=session['usuario_id'],
@@ -110,7 +107,6 @@ def ver_animal(animal_id):
 
                 return redirect(url_for('interesse.interesse'))
 
-            # --- ADOÇÃO ---
             if acao == "adotar":
                 existe = sessao.query(Adocao).filter_by(
                     usuario_id=session['usuario_id'],
@@ -131,5 +127,4 @@ def ver_animal(animal_id):
 
                 return redirect(url_for('adocao.animais_adocoes_usuario'))
 
-    # GET → página do animal
     return render_template('detalhes_animal.html', animal=animal)

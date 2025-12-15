@@ -29,19 +29,17 @@ def adotar(animal_id):
     if not usuario_id:
         return redirect(url_for('auth.login'))
 
-    with Sessao_base() as sessao:
-        adocao_existente = sessao.query(Adocao)\
-            .filter(Adocao.usuario_id == usuario_id,
-                    Adocao.animal_id == animal_id)\
-            .first()
+    if session.get('usuario_id'):
+        with Sessao_base() as sessao:
+            adocao_existente = sessao.query(Adocao).filter(Adocao.usuario_id == usuario_id, Adocao.animal_id == animal_id).first()
 
-        if adocao_existente:
-            flash("Você já adotou este animal!", "warning")
-            return redirect(url_for('adocao.animais_adocoes_usuario'))
+            if adocao_existente:
+                flash("Você já adotou este animal!", "warning")
+                return redirect(url_for('adocao.animais_adocoes_usuario'))
 
-        nova_adocao = Adocao(usuario_id=usuario_id, animal_id=animal_id)
-        sessao.add(nova_adocao)
-        sessao.commit()
+            nova_adocao = Adocao(usuario_id=usuario_id, animal_id=animal_id)
+            sessao.add(nova_adocao)
+            sessao.commit()
 
-    flash("Adoção cadastrada com sucesso!", "success")
+        flash("Adoção cadastrada com sucesso!", "success")
     return redirect(url_for('adocao.animais_adocoes_usuario'))

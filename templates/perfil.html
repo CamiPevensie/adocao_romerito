@@ -3,10 +3,11 @@
 
 {% block conteudo %}
 
-<label><h2>{{usuario.nome}}</h2></label>
+<!-- <label><h2>{{usuario.nome}}</h2></label> -->
 <div class="container">
-    <form action="{{ url_for('usuario.detalhes_usuario', usuario_id=usuario.id) }}" method="GET">
-        <h1 style="margin-top: 1px; margin-bottom: 1px;">Sobre mim:</h1>
+    <div class="container3">
+        <form action="{{ url_for('usuario.perfil', usuario_id=usuario.id) }}" method="GET">
+        <h1 style="margin-top: 1px; margin-bottom: 1px;">{{usuario.nome}}</h1>
         Nome Completo <input type="text" value="{{ usuario.nome_completo }}" readonly style="pointer-events: none;">
 
         <div class="linha">
@@ -14,6 +15,7 @@
             Email <input type="text" value="{{ usuario.email }}" readonly style="pointer-events: none;">
         </div>
 
+        <p>ENDEREÇO</p>
 
         <div class="linha">
         Rua <input type="text" value="{{ usuario.Rua }}" readonly style="pointer-events: none;">
@@ -29,11 +31,7 @@
             Cidade  <input type="text" value="{{ usuario.cidade }}" readonly style="pointer-events: none;">
             Estado <input type="text" value="{{ usuario.estado }}" readonly style="pointer-events: none;">
         </div>
-    </form>
-    <div class="botoes">
-    <form action="{{ url_for('adocao.adotar', usuario_id=usuario.id) }}" method="POST">
-        <button type="submit" style="color:white; background:brown;">ADOTAR AGORA</button>
-    </form>
+        </form>
     </div>
 </div>
 {% endblock %}
