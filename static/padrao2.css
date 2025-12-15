@@ -1,3 +1,26 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("../static/img/fundo.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    opacity: 0.4;
+    z-index: -1;
+}
+
+body {
+    background-color: #f1f1f1;
+}
+
 .container {
     display: flex;
     justify-content: flex-start;
@@ -68,4 +91,14 @@
 .card_link{
     text-decoration: none;
     color: inherit;
+}
+
+.img-grande {
+    display: flex;
+    width: 100%;
+}
+
+.img-grande img {
+    width: 100%;
+    height: auto;
 }

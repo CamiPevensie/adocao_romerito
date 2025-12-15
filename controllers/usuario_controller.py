@@ -13,4 +13,4 @@ def perfil(usuario_id):
 
     with Sessao_base() as sessao:
         perfil = sessao.query(Usuario).filter(Usuario.id == usuario_id).first()
-        return render_template('perfil.html')
+        return render_template('perfil.html', usuario=perfil)

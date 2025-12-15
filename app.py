@@ -17,7 +17,7 @@ def index():
     with Sessao_base() as sessao:
         animais = sessao.query(Animal).all()
         total_animais = len(animais)
-        quantidade = min(4, total_animais)
+        quantidade = min(5, total_animais)
         animais_sorteados = random.sample(animais, quantidade)
 
     return render_template('index.html', animais=animais_sorteados)

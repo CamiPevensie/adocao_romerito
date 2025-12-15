@@ -3,6 +3,37 @@
 
 {% block conteudo %}
 
-<label><h2>Bem vindo,{{ usuario.nome}}!</h2></label>
+<label><h2>{{usuario.nome}}</h2></label>
+<div class="container">
+    <form action="{{ url_for('usuario.detalhes_usuario', usuario_id=usuario.id) }}" method="GET">
+        <h1 style="margin-top: 1px; margin-bottom: 1px;">Sobre mim:</h1>
+        Nome Completo <input type="text" value="{{ usuario.nome_completo }}" readonly style="pointer-events: none;">
 
+        <div class="linha">
+            Telefone para contato <input type="text" value="{{ usuario.telefone }}" readonly style="pointer-events: none;">
+            Email <input type="text" value="{{ usuario.email }}" readonly style="pointer-events: none;">
+        </div>
+
+
+        <div class="linha">
+        Rua <input type="text" value="{{ usuario.Rua }}" readonly style="pointer-events: none;">
+        Número <input type="text" value="{{ usuario.numero }}" readonly style="pointer-events: none;">
+        </div>
+
+        <div class="linha">
+            Bairro <input type="text" value="{{ usuario.bairro }}" readonly style="pointer-events: none;">
+            Complemento <input type="text" value="{{ usuario.complemento }}" readonly style="pointer-events: none;">
+        </div>
+        
+        <div class="linha">
+            Cidade  <input type="text" value="{{ usuario.cidade }}" readonly style="pointer-events: none;">
+            Estado <input type="text" value="{{ usuario.estado }}" readonly style="pointer-events: none;">
+        </div>
+    </form>
+    <div class="botoes">
+    <form action="{{ url_for('adocao.adotar', usuario_id=usuario.id) }}" method="POST">
+        <button type="submit" style="color:white; background:brown;">ADOTAR AGORA</button>
+    </form>
+    </div>
+</div>
 {% endblock %}
