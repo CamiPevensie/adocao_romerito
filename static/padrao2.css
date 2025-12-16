@@ -35,7 +35,6 @@ body {
 }
 
 .animais {
-    /* border: 3px solid greenyellow; */
     display: flex;
     flex-direction: row;
     gap: 5%;
@@ -57,35 +56,42 @@ body {
     text-align: center;
 }
 
-.animal-card img { 
-    display: flex; 
-    padding-top: 15px; 
-    max-width: 60%; 
-    justify-self: center; 
-    align-self: center; 
-    max-height: 230px;
-}
-
-.imagem-animal {
+.foto-animal {
+    margin-top: 12px;
+    position: relative;
+    overflow: hidden;
+    width: 170px;
+    height: 230px;
+    border-radius: 10px;
     display: flex;
-    background-color: black;
-    height: 90%;
-    width: 60%;
-    justify-self: center;
+    justify-content: center;
+    align-items: center;
     align-self: center;
 }
 
+.foto-animal::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: inherit;
+    background-size: cover;      
+    background-position: center;
+    filter: blur(20px);
+    transform: scale(1.1);       
+    z-index: 1;
+}
 
-.foto-animal {
-    display: flex;
-    height: 60%;
-    align-content: center;
-    justify-content: center;
+.foto-animal img {
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;         
+    border-radius: 10px;
 }
 
 .titulo1 {
     color:#0B6623;
-
 }
 
 .card_link{
@@ -102,3 +108,4 @@ body {
     width: 100%;
     height: auto;
 }
+

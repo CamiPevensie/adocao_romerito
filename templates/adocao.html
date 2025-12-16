@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block titulo %}Minhas Adoções{% endblock %}
-{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='padrao2.css') }}">{% endblock %}
 
 {% block conteudo %}
 
@@ -9,13 +9,20 @@
 
 <div class="container">
 <div class="animais">
-    {% for adocao in adocoes %}
-    <div class="animal-card">
-        <img src="{{ adocao.animal.foto }}">
-        <h3>{{ adocao.animal.nome }}</h3>
-        <p>{{ adocao.animal.raca }}</p>
-        <p>{{ adocao.animal.idade }} anos</p>
-    </div>
+    {% for animal in adocoes %}
+    <a class="card_link" href="{{ url_for('animais.detalhes_animal', animal_id=animal.id) }}">          
+        <div class="animal-card">
+            <div class="foto-animal" style="background-image: url('{{ animal.foto }}');">
+                <img src="{{ animal.animal.foto }}" alt="">
+            </div>
+            <div class="info-animal">
+            <h3>{{ animal.animal.nome }}</h3>
+            <p>Raça: {{ animal.animal.raca }}</p>
+            <p>Idade: {{ animal.animal.idade }} anos</p>
+            <p>Localização: {{ animal.animal.localizacao }} anos</p> 
+            </div>
+        </div>
+    </a>
     {% endfor %}
 </div>
 </div>

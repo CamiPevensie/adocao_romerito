@@ -179,3 +179,19 @@ body {
     border: 1px solid #ccc;
     padding: 7px;
 }
+
+p {
+    font-style: italic;
+}
+
+p a {
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #024513;
+    text-decoration: none;
+    padding: 2px 5px 2px 5px;
+}
+
+p a:hover {
+    color:rgb(255, 251, 34);
+}
