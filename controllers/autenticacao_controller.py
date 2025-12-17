@@ -1,6 +1,14 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
+from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin, current_user
 from models.usuario import Usuario
 from database import Sessao_base
+login_manager = LoginManager()
+login_manager.login_view = 'login'
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user():
+    return 
 
 autenticacao_bp = Blueprint("auth", __name__)
 

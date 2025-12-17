@@ -14,10 +14,7 @@ def animais_adocoes_usuario():
         return redirect(url_for('auth.login'))
 
     with Sessao_base() as sessao:
-        adocoes = sessao.query(Adocao)\
-            .options(joinedload(Adocao.animal))\
-            .filter(Adocao.usuario_id == usuario_id)\
-            .all()
+        adocoes = sessao.query(Adocao).options(joinedload(Adocao.animal)).filter(Adocao.usuario_id == usuario_id).all()
 
     return render_template('adocao.html', adocoes=adocoes)
 

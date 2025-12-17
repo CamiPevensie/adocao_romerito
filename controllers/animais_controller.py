@@ -11,17 +11,17 @@ def animais():
         animais = sessao.query(Animal).all()
     return render_template('animais.html', animais=animais)
 
-
 @animais_bp.route('/detalhes_animal/<int:animal_id>', methods=['GET'])
 def detalhes_animal(animal_id):
     with Sessao_base() as sessao:
         animal = sessao.get(Animal, animal_id)
+        if animal is None:
+            return "Animal não encontrado", 404
         usu_id = session.get('usuario_id')
         dono = False
         if usu_id == animal.usuario_cad_id:
             dono = True
     return render_template('detalhes_animal.html', animal=animal, dono=dono)
-
 
 @animais_bp.route('/remover_animal', methods=["GET", "POST"])
 def remover_animal():
@@ -29,9 +29,8 @@ def remover_animal():
 
     if not animal_id:
         flash("ID não recebido.", category="error")
-        return redirect(url_for('animais.animais')) #vai que cola
-    #colou kkkkkk
-    #esse negócio acima foi by chatgpt
+        return redirect(url_for('animais.animais')) 
+    
     with Sessao_base() as sessao:
         animal = sessao.query(Animal).filter_by(id=animal_id).first()
         if animal:
@@ -68,22 +67,9 @@ def cadastrar_animal():
             flash("Preencha todos os campos obrigatórios.", "error")
             return redirect(url_for('animais.cadastrar_animal'))
 
-        animal = Animal(
-            nome=nome,
-            raca=raca,
-            idade=idade,
-            sexo=sexo,
-            porte=porte,
-            vacinado=vacinado,
-            vacinas_tomadas=vacinas_tomadas,
-            sobre=sobre,
-            localizacao=localizacao,
-            nome_protetor=nome_protetor,
-            telefone_contato=telefone_contato,
-            email_contato=email_contato,
-            foto=foto_animal,
-            usuario_cad_id=usuario_id
-        )
+        animal = Animal(nome=nome, raca=raca, idade=idade, sexo=sexo, porte=porte, vacinado=vacinado, vacinas_tomadas=vacinas_tomadas, sobre=sobre,
+        localizacao=localizacao, nome_protetor=nome_protetor, telefone_contato=telefone_contato, email_contato=email_contato,
+        foto=foto_animal, usuario_cad_id=usuario_id)
 
         with Sessao_base() as sessao_db:
             sessao_db.add(animal)
@@ -93,7 +79,6 @@ def cadastrar_animal():
         return redirect(url_for('animais.animais_para_adocao'))
 
     return render_template('cadastrar_animal.html')
-
 
 @animais_bp.route('/animais_adocoes_usuario', methods=['GET'])
 def animais_para_adocao():

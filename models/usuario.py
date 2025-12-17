@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, Integer
 from database import Base
+from flask
 
 class Usuario(Base):
     __tablename__ = "usuarios"

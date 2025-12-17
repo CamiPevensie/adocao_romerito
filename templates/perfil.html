@@ -1,11 +1,12 @@
 {% extends 'base.html'%}
 {% block titulo %} Perfil do Usuário {% endblock %}
-
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='perfil.css') }}">{% endblock %}
 {% block conteudo %}
 
-<!-- <label><h2>{{usuario.nome}}</h2></label> -->
-<div class="container">
-    <div class="container3">
+    <div class="img2">
+        <img src="../static/img/perfil.png" alt="">
+    </div>
+    <div class="container2">
         <form action="{{ url_for('usuario.perfil', usuario_id=usuario.id) }}" method="GET">
         <h1 style="margin-top: 1px; margin-bottom: 1px;">{{usuario.nome}}</h1>
         Nome Completo <input type="text" value="{{ usuario.nome_completo }}" readonly style="pointer-events: none;">
@@ -32,6 +33,11 @@
             Estado <input type="text" value="{{ usuario.estado }}" readonly style="pointer-events: none;">
         </div>
         </form>
+        <div class="botoes">
+            <form action="{{ url_for('usuario.logout') }}" method="POST">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}

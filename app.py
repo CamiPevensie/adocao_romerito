@@ -6,9 +6,13 @@ from controllers.autenticacao_controller import autenticacao_bp
 from controllers.animais_controller import animais_bp
 from controllers.adocao_controller import adocao_bp
 from controllers.usuario_controller import usuario_bp
+from flask_login import LoginManager
 
 app = Flask(__name__)
 app.secret_key = "SENHASUPERHIPERMEGASECRETAUAAAAAU"
+
+login_manager = LoginManager(app) 
+login_manager.login_view = 'login'
 
 @app.route('/')
 def index():
