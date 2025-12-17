@@ -30,11 +30,28 @@
     <div class="img2" style="background-image: url('{{ animal.foto }}')">
             <img src="{{ animal.foto }}" alt="">
     </div>
+    {% if dono %}
+    </div>
+    <div class="botoes">
+    <form action="{{ url_for('adocao.adotar', animal_id=animal.id) }}" method="POST">
+        <button type="submit">EDITAR INFORMAÇÕES</button>
+    </form> 
+    <!-- editar a parte de edição depois -->
+    
+    <form action="{{ url_for('animais.remover_animal') }}" method="post">
+        <input type="hidden" name="id" value="{{ animal.id }}">
+        <button type="submit">REMOVER CADASTRO</button>
+    </form>
+    </div>
+    
+    {%else%}
     </div>
     <div class="botoes">
     <form action="{{ url_for('adocao.adotar', animal_id=animal.id) }}" method="POST">
         <button type="submit">ME ADOTE AGORA!</button>
     </form>
     </div>
+    {% endif %}
 </div>
+
 {% endblock %}

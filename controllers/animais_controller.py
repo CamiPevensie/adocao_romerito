@@ -16,8 +16,31 @@ def animais():
 def detalhes_animal(animal_id):
     with Sessao_base() as sessao:
         animal = sessao.get(Animal, animal_id)
-    return render_template('detalhes_animal.html', animal=animal)
+        usu_id = session.get('usuario_id')
+        dono = False
+        if usu_id == animal.usuario_cad_id:
+            dono = True
+    return render_template('detalhes_animal.html', animal=animal, dono=dono)
 
+
+@animais_bp.route('/remover_animal', methods=["GET", "POST"])
+def remover_animal():
+    animal_id = request.form.get('id')
+
+    if not animal_id:
+        flash("ID não recebido.", category="error")
+        return redirect(url_for('animais.animais')) #vai que cola
+    #colou kkkkkk
+    #esse negócio acima foi by chatgpt
+    with Sessao_base() as sessao:
+        animal = sessao.query(Animal).filter_by(id=animal_id).first()
+        if animal:
+            sessao.delete(animal)
+            sessao.commit()
+        else:
+            flash("Animal não encontrado.", category="error")
+    
+    return redirect(url_for('animais.animais'))
 
 @animais_bp.route('/cadastrar_animal', methods=['GET', 'POST'])
 def cadastrar_animal():
