@@ -1,9 +1,10 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, Integer
 from database import Base
-from flask
+from flask_login import UserMixin
 
-class Usuario(Base):
+
+class Usuario(Base, UserMixin):
     __tablename__ = "usuarios"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)

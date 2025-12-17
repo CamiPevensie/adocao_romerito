@@ -1,16 +1,33 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
-from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin, current_user
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from models.usuario import Usuario
 from database import Sessao_base
 login_manager = LoginManager()
 login_manager.login_view = 'login'
-login_manager.init_app(app)
+
 
 @login_manager.user_loader
-def load_user():
-    return 
+def load_user(user_id):
+    db = Sessao_base()
+    try:
+        return db.get(Usuario, int(user_id))
+    finally:
+        db.close
 
 autenticacao_bp = Blueprint("auth", __name__)
+
+@autenticacao_bp.route("/debug")
+def debug():
+    return{
+        "is authenticated": current_user.is_authenticated,
+        "id": current_user.get_id() if current_user.is_authenticated else None
+    }
+
+@autenticacao_bp.route("forceL")
+def forceL():
+    usuario = Usuario.query.first()
+    login_user(usuario)
+    return "logado"
 
 @autenticacao_bp.route("/login", methods=["GET", "POST"])
 def login():

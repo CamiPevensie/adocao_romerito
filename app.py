@@ -2,17 +2,17 @@ from flask import Flask, render_template
 from database import Sessao_base
 from models.animal import Animal
 import random
-from controllers.autenticacao_controller import autenticacao_bp
+from controllers.autenticacao_controller import autenticacao_bp, login_manager
 from controllers.animais_controller import animais_bp
 from controllers.adocao_controller import adocao_bp
 from controllers.usuario_controller import usuario_bp
-from flask_login import LoginManager
+
 
 app = Flask(__name__)
 app.secret_key = "SENHASUPERHIPERMEGASECRETAUAAAAAU"
 
-login_manager = LoginManager(app) 
-login_manager.login_view = 'login'
+
+login_manager.init_app(app)
 
 @app.route('/')
 def index():
