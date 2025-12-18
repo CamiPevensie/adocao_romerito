@@ -5,9 +5,10 @@ from flask_login import (
 )
 from models.usuario import Usuario
 from database import Sessao_base
+from typing import Optional
 
 login_manager = LoginManager()
-login_manager.login_view = 'auth.login'
+login_manager.login_view = "auth.login"  # type: ignore
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -52,19 +53,10 @@ def cadastro():
                 flash("Este e-mail já está cadastrado.", "erro")
                 return render_template('cadastro.html')
 
-            novo_usuario = Usuario(
-                nome=nome,
-                nome_completo=nome_completo,
-                telefone=telefone,
-                email=email,
-                senha=senha,
-                rua=rua,
-                bairro=bairro,
-                cidade=cidade,
-                numero=numero,
-                complemento=complemento,
-                estado=estado
-            )
+            novo_usuario = Usuario(nome=nome, nome_completo=nome_completo,
+            telefone=telefone, email=email, senha=senha,
+            rua=rua, bairro=bairro, cidade=cidade,
+            numero=numero, complemento=complemento, estado=estado)
 
             sessao.add(novo_usuario)
             sessao.commit()

@@ -1,30 +1,36 @@
 {% extends 'base.html' %}
 
 {% block titulo %}Minhas Adoções{% endblock %}
-{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='padrao2.css') }}">{% endblock %}
-
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='padrao2.css') }}">
+{% endblock %}
 {% block conteudo %}
 
 <h1>ADOÇÕES</h1>
 
 <div class="container">
-<div class="animais">
-    {% for animal in adocoes %}
-    <a class="card_link" href="{{ url_for('animais.detalhes_animal', animal_id=animal.id) }}">          
-        <div class="animal-card">
-            <div class="foto-animal" style="background-image: url('{{ animal.foto }}');">
-                <img src="{{ animal.animal.foto }}" alt="">
-            </div>
-            <div class="info-animal">
-            <h3>{{ animal.animal.nome }}</h3>
-            <p>Raça: {{ animal.animal.raca }}</p>
-            <p>Idade: {{ animal.animal.idade }} anos</p>
-            <p>Localização: {{ animal.animal.localizacao }} </p> 
-            </div>
+    <div class="animais">
+        {% for adocao in adocoes %}
+        <div class="animal-card-container">
+            <a class="card_link" href="{{ url_for('animais.detalhes_animal', animal_id=adocao.animal.id) }}">          
+                <div class="animal-card">
+                    <div class="foto-animal" style="background-image: url('{{ adocao.animal.foto }}');">
+                        <img src="{{ adocao.animal.foto }}" alt="">
+                    </div>
+                    <div class="info-animal">
+                        <h3>{{ adocao.animal.nome }}</h3>
+                        <p>Raça: {{ adocao.animal.raca }}</p>
+                        <p>Idade: {{ adocao.animal.idade }} anos</p>
+                        <p>Localização: {{ adocao.animal.localizacao }}</p> 
+                    </div>
+                </div>
+            </a>
+            <form action="{{ url_for('adocao.desfazer_adocao', animal_id=adocao.animal.id) }}" method="POST" style="text-align:center; margin-top:10px;">
+                <button type="submit">Desfazer Adoção</button>
+            </form>
         </div>
-    </a>
-    {% endfor %}
-</div>
+        {% endfor %}
+    </div>
 </div>
 
 {% endblock %}

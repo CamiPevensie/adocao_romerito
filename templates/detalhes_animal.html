@@ -6,50 +6,46 @@
 
 <div class="container">
     <div class="container2">
-    <form action="{{ url_for('animais.detalhes_animal', animal_id=animal.id) }}" method="GET">
-        <h1 style="margin-top: 1px; margin-bottom: 1px;">Sobre mim:</h1>
-        Nome: <input type="text" value="{{ animal.nome }}" readonly style="pointer-events: none;">
-        Raça: <input type="text" value="{{ animal.raca }}" readonly style="pointer-events: none;">
-        <div class="linha">
-            Idade: <input type="text" value="{{ animal.idade }}" readonly style="pointer-events: none;">
-            Sexo: <input type="text" value="{{ animal.sexo }}" readonly style="pointer-events: none;">
-            Porte: <input type="text" value="{{ animal.porte }}" readonly style="pointer-events: none;">
+        <form action="{{ url_for('animais.detalhes_animal', animal_id=animal.id) }}" method="GET">
+            <h1 style="margin-top: 1px; margin-bottom: 1px;">Sobre mim:</h1>
+            Nome: <input type="text" value="{{ animal.nome }}" readonly style="pointer-events: none;">
+            Raça: <input type="text" value="{{ animal.raca }}" readonly style="pointer-events: none;">
+            <div class="linha">
+                Idade: <input type="text" value="{{ animal.idade }}" readonly style="pointer-events: none;">
+                Sexo: <input type="text" value="{{ animal.sexo }}" readonly style="pointer-events: none;">
+                Porte: <input type="text" value="{{ animal.porte }}" readonly style="pointer-events: none;">
+            </div>
+            <div class="linha">
+            Vacinado? <input type="text" value="{{ animal.vacinado }}" readonly style="pointer-events: none;">
+            Vacinas tomadas: <input type="text" value="{{ animal.vacinas_tomadas }}" readonly style="pointer-events: none;">
+            </div>
+            Sobre: <input type="text" value="{{ animal.sobre }}" readonly style="pointer-events: none;">
+            Localização: <input type="text" value="{{ animal.localizacao }}" readonly style="pointer-events: none;">
+            <div class="linha">
+                Nome do protetor: <input type="text" value="{{ animal.nome_protetor }}" readonly style="pointer-events: none;">
+                Telefone para contato: <input type="text" value="{{ animal.telefone_contato }}" readonly style="pointer-events: none;">
+            </div>
+                Email contato: <input type="text" value="{{ animal.email_contato }}" readonly style="pointer-events: none;">
+        </form>
+        <div class="img2" style="background-image: url('{{ animal.foto }}')">
+                <img src="{{ animal.foto }}" alt="">
         </div>
-        <div class="linha">
-        Vacinado? <input type="text" value="{{ animal.vacinado }}" readonly style="pointer-events: none;">
-        Vacinas tomadas: <input type="text" value="{{ animal.vacinas_tomadas }}" readonly style="pointer-events: none;">
-        </div>
-        Sobre: <input type="text" value="{{ animal.sobre }}" readonly style="pointer-events: none;">
-        Localização: <input type="text" value="{{ animal.localizacao }}" readonly style="pointer-events: none;">
-        <div class="linha">
-            Nome do protetor: <input type="text" value="{{ animal.nome_protetor }}" readonly style="pointer-events: none;">
-            Telefone para contato: <input type="text" value="{{ animal.telefone_contato }}" readonly style="pointer-events: none;">
-        </div>
-            Email contato: <input type="text" value="{{ animal.email_contato }}" readonly style="pointer-events: none;">
-    </form>
-    <div class="img2" style="background-image: url('{{ animal.foto }}')">
-            <img src="{{ animal.foto }}" alt="">
-    </div>
-    {% if dono %}
-    </div>
+    </div>  
     <div class="botoes">
-    <form action="{{ url_for('animais.editar_animais', animal_id=animal.id) }}" method="GET">
-    <button type="submit">EDITAR INFORMAÇÕES</button>
-    </form>
-    <form action="{{ url_for('animais.remover_animal') }}" method="post">
-        <input type="hidden" name="id" value="{{ animal.id }}">
-        <button type="submit">REMOVER CADASTRO</button>
-    </form>
-    </div>
-    
-    {%else%}
-    </div>
-    <div class="botoes">
-    <form action="{{ url_for('adocao.adotar', animal_id=animal.id) }}" method="POST">
-        <button type="submit">ME ADOTE AGORA!</button>
-    </form>
-    </div>
-    {% endif %}
+            {% if dono %}
+            <form action="{{ url_for('animais.editar_animais', animal_id=animal.id) }}" method="GET">
+            <button type="submit">EDITAR INFORMAÇÕES</button>
+            </form>
+            <form action="{{ url_for('animais.remover_animal') }}" method="post">
+                <input type="hidden" name="id" value="{{ animal.id }}">
+                <button type="submit">REMOVER CADASTRO</button>
+            </form>
+            {%else%}
+            <form action="{{ url_for('adocao.adotar', animal_id=animal.id) }}" method="POST">
+                <button type="submit">ME ADOTE AGORA!</button>
+            </form>
+            {% endif %}
+    </div>      
 </div>
 
 {% endblock %}

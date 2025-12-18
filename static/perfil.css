@@ -42,23 +42,38 @@ body {
 }
 
 .container2 {
+    background: #fff;
+    border-radius: 10px;
+    width: 40%;
+    max-width: 900px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    padding: 20px;
     display: flex;
     flex-direction: column;
+    gap: 40px;
+    justify-content: center;
+    align-content: center;
+    max-height: 70vh;
+    margin: 0 auto;
     align-items: center;
-    gap: 20px;
 }
+
 
 .container2 .perfil-form {
     display: flex;
     flex-direction: column;
     background: #fff;
     border-radius: 10px;
-    width: 65%;
+    width: 80%;
     max-width: 900px;
     box-shadow: 0 0 12px rgba(0,0,0,0.1);
-    gap: 14px;
     padding: 20px;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    position: relative;
+    top: -4vh;
 }
+
 
 .container2 .perfil-form h1 {
     text-align: center;
@@ -75,7 +90,7 @@ body {
 }
 
 .container2 .perfil-form input {
-    width: 100%;
+    width: 92%;
     border-radius: 6px;
     border: 1px solid #ccc;
     padding: 10px;
@@ -107,8 +122,12 @@ body {
     border-radius: 5px;
     padding: 10px;
     font-size: 17px;
+    position: relative;
+    top: -9vh;
 }
 
 .botoes button:hover {
     color: rgb(255, 251, 34);
 }
+
+

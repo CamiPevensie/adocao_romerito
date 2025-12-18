@@ -6,11 +6,26 @@ from flask_login import login_required, current_user
 animais_bp = Blueprint("animais", __name__)
 
 
+from models.adocao import Adocao
+
 @animais_bp.route('/', methods=['GET'])
 def animais():
     with Sessao_base() as sessao:
-        animais = sessao.query(Animal).all()
-    return render_template('animais.html', animais=animais)
+        adocoes = sessao.query(Adocao).all()
+        
+        adotados_ids = []
+        for adocao in adocoes:
+            adotados_ids.append(adocao.animal_id)
+        
+        if adotados_ids:
+            animais_disponiveis = sessao.query(Animal).filter(~Animal.id.in_(adotados_ids)).all()
+        else:
+            animais_disponiveis = sessao.query(Animal).all()
+
+    return render_template('animais.html', animais=animais_disponiveis)
+
+
+
 
 @animais_bp.route('/detalhes_animal/<int:animal_id>', methods=['GET'])
 def detalhes_animal(animal_id):
@@ -57,7 +72,9 @@ def editar_animais(animal_id):
         if request.method == 'POST':
             animal.nome = request.form.get('nome_form') or animal.nome
             animal.raca = request.form.get('raca_form') or animal.raca
-            animal.idade = request.form.get('idade_form') or animal.idade
+            idade_form = request.form.get('idade_form') or animal.idade
+            if idade_form:
+                animal.idade = int(idade_form)
             animal.sexo = request.form.get('sexo_form') or animal.sexo
             animal.porte = request.form.get('porte_form') or animal.porte
             animal.vacinado = request.form.get('vacinado_form') == 'on'
@@ -119,3 +136,6 @@ def animais_para_adocao():
     with Sessao_base() as sessao:
         animais = sessao.query(Animal).all()
     return render_template('adocao.html', animais=animais)
+
+
+

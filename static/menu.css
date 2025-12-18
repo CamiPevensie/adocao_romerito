@@ -12,10 +12,11 @@ h1, h2, h3, p, a {
     background: #13442f;
     align-items: center;
     justify-content: space-between; 
-    padding: 0 30px;
+    padding: 0 10px;
     box-sizing: border-box;
     position: sticky;
-    top: 0; 
+    top: 0;
+    z-index: 1000;
 }
 
 .menu a {

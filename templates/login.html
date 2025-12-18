@@ -3,13 +3,19 @@
 {% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='padrao.css') }}">{% endblock %}
 
 {% block conteudo %}
+{% with mensagens = get_flashed_messages(with_categories=true) %}
+        {% if mensagens %}
+            {% set categoria, mensagem = mensagens[0] %}
+            <p class="{{ categoria }}">{{ mensagem }}</p>
+        {% endif %}
+{% endwith %}
     
 <div class="container">
     <div class="container4">
         <form action="{{url_for('auth.login')}}" method="post">
         <h1>Faça Login</h1>
-        Email: <input type="email" name="email_form">
-        Senha: <input type="password" name="senha_form">
+        Email: <input type="email" name="email_form" required>
+        Senha: <input type="password" name="senha_form" required>
         <input type="submit" value="Enviar">
         <p>Não possui uma conta? Clique <a href="{{ url_for('auth.cadastro') }}">AQUI</a> e faça seu cadastro!</p>
         {% if erro %}

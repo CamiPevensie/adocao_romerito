@@ -6,44 +6,51 @@
 
 {% block conteudo %}
 
+{% with mensagens = get_flashed_messages(with_categories=true) %}
+        {% if mensagens %}
+            {% set categoria, mensagem = mensagens[0] %}
+            <p class="{{ categoria }}">{{ mensagem }}</p>
+        {% endif %}
+{% endwith %}
+
 <div class="container">
     <div class="container2">
         <form class="perfil-form">
-            <h1>{{ usuario.nome }}</h1>
-            Nome Completo:<input type="text" value="{{ usuario.nome_completo }}">
-            <div class="linha">
-                <div>
-                    Telefone:<input type="text" value="{{ usuario.telefone }}">
+                <h1>{{ usuario.nome }}</h1>
+                Nome Completo:<input type="text" value="{{ usuario.nome_completo }}">
+                <div class="linha">
+                    <div>
+                        Telefone:<input type="text" value="{{ usuario.telefone }}">
+                    </div>
+                    <div>
+                        Email:<input type="text" value="{{ usuario.email }}">
+                    </div>
                 </div>
-                <div>
-                    Email:<input type="text" value="{{ usuario.email }}">
+                <p><b>ENDEREÇO</b></p>
+                <div class="linha">
+                    <div>
+                        Rua:<input type="text" value="{{ usuario.rua }}">
+                    </div>
+                    <div>
+                        Número:<input type="text" value="{{ usuario.numero }}">
+                    </div>
                 </div>
-            </div>
-            <p><b>ENDEREÇO</b></p>
-            <div class="linha">
-                <div>
-                    Rua:<input type="text" value="{{ usuario.rua }}">
+                <div class="linha">
+                    <div>
+                        Bairro:<input type="text" value="{{ usuario.bairro }}">
+                    </div>
+                    <div>
+                        Complemento:<input type="text" value="{{ usuario.complemento }}">
+                    </div>
                 </div>
-                <div>
-                    Número:<input type="text" value="{{ usuario.numero }}">
-                </div>
-            </div>
-            <div class="linha">
-                <div>
-                    Bairro:<input type="text" value="{{ usuario.bairro }}">
-                </div>
-                <div>
-                    Complemento:<input type="text" value="{{ usuario.complemento }}">
-                </div>
-            </div>
-            <div class="linha">
-                <div>
-                    Cidade:<input type="text" value="{{ usuario.cidade }}">
-                </div>
-                <div>
-                    Estado:<input type="text" value="{{ usuario.estado }}">
-                </div>
-            </div>
+                <div class="linha">
+                    <div>
+                        Cidade:<input type="text" value="{{ usuario.cidade }}">
+                    </div>
+                    <div>
+                        Estado:<input type="text" value="{{ usuario.estado }}">
+                    </div>
+                    </div>
         </form>
         <div class="botoes">
             <form action="{{ url_for('auth.logout') }}" method="POST">

@@ -9,30 +9,30 @@
     <form action="{{ url_for('animais.cadastrar_animal') }}" method="POST">
         <h1 style="margin-top: 1px; margin-bottom: 1px;">Coloque-me para adoção!</h1>
         <div class="linha">
-            Nome: *<input type="text" name="nome_form">
+            Nome: *<input type="text" name="nome_form" required>
         </div>
         <div class="linha">
-            Raça: <input type="text" name="raca_form">
+            Raça: <input type="text" name="raca_form" required>
         </div>
         <div class="linha">
-            Idade: * <input type="number" name="idade_form">
-            Sexo: *<input type="text" name="sexo_form"> 
-            Porte: *<input type="text" name="porte_form">
+            Idade: * <input type="number" name="idade_form" required min="0">
+            Sexo: *<input type="text" name="sexo_form" required> 
+            Porte: *<input type="text" name="porte_form" required>
         </div>
         <div class="linha">
-        Vacinado? *<input type="checkbox" name="vacinado_form" >
+        Vacinado? <input type="checkbox" name="vacinado_form">
         Vacinas tomadas: *<input type="text" name="vacinas_tomadas_form">
         </div>
         Sobre: *<input type="text" name="sobre_form">
         <div class="linha">
-            Foto (Link para uma foto do animal): *<input type="text" name="foto_form">
+            Foto (Link para uma foto do animal): *<input type="text" name="foto_form" required>
         </div>        Localização: *<input type="text" name="localizacao_form">
         <div class="linha">
-            Nome do protetor: *<input type="text" name="nome_protetor_form">
+            Nome do protetor: *<input type="text" name="nome_protetor_form" required>
         </div>
         <div class="linha">
-            Email: *<input type="text" name="email_contato_form">
-            Telefone: *<input type="text" name="telefone_contato_form">
+            Email: *<input type="text" name="email_contato_form" required>
+            Telefone: *<input type="text" name="telefone_contato_form" required>
         </div>
         <input type="submit" value="Enviar">
     </form>
@@ -41,13 +41,13 @@
         </div>
     </div>
     <div class="flash-container">
-    {% with mensagens = get_flashed_messages(with_categories=true) %}
+    <!-- {% with mensagens = get_flashed_messages(with_categories=true) %}
         {% if mensagens %}
-            {% for categoria, mensagem in mensagens %}
-                <p class="{{ categoria }}">{{ mensagem }}</p>
-            {% endfor %}
+            {% set categoria, mensagem = mensagens[0] %}
+            <p class="{{ categoria }}">{{ mensagem }}</p>
         {% endif %}
-    {% endwith %}
+    {% endwith %} -->
+
     </div>
     </div>
 

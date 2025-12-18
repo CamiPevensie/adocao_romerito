@@ -38,6 +38,7 @@ body::before {
     width: 100%;
     min-height: calc(100vh - 8vh); 
     margin: 0 auto;
+    margin-top: 5vh;
 }
 
 .linha {
