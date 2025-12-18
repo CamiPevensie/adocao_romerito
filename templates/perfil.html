@@ -1,43 +1,56 @@
-{% extends 'base.html'%}
-{% block titulo %} Perfil do Usuário {% endblock %}
-{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='perfil.css') }}">{% endblock %}
+{% extends 'base.html' %}
+{% block titulo %}Perfil do Usuário{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='perfil.css') }}">
+{% endblock %}
+
 {% block conteudo %}
 
-    <div class="img2">
-        <img src="../static/img/perfil.png" alt="">
-    </div>
+<div class="container">
     <div class="container2">
-        <form action="{{ url_for('usuario.perfil', usuario_id=usuario.id) }}" method="GET">
-        <h1 style="margin-top: 1px; margin-bottom: 1px;">{{usuario.nome}}</h1>
-        Nome Completo <input type="text" value="{{ usuario.nome_completo }}" readonly style="pointer-events: none;">
-
-        <div class="linha">
-            Telefone para contato <input type="text" value="{{ usuario.telefone }}" readonly style="pointer-events: none;">
-            Email <input type="text" value="{{ usuario.email }}" readonly style="pointer-events: none;">
-        </div>
-
-        <p>ENDEREÇO</p>
-
-        <div class="linha">
-        Rua <input type="text" value="{{ usuario.Rua }}" readonly style="pointer-events: none;">
-        Número <input type="text" value="{{ usuario.numero }}" readonly style="pointer-events: none;">
-        </div>
-
-        <div class="linha">
-            Bairro <input type="text" value="{{ usuario.bairro }}" readonly style="pointer-events: none;">
-            Complemento <input type="text" value="{{ usuario.complemento }}" readonly style="pointer-events: none;">
-        </div>
-        
-        <div class="linha">
-            Cidade  <input type="text" value="{{ usuario.cidade }}" readonly style="pointer-events: none;">
-            Estado <input type="text" value="{{ usuario.estado }}" readonly style="pointer-events: none;">
-        </div>
+        <form class="perfil-form">
+            <h1>{{ usuario.nome }}</h1>
+            Nome Completo:<input type="text" value="{{ usuario.nome_completo }}">
+            <div class="linha">
+                <div>
+                    Telefone:<input type="text" value="{{ usuario.telefone }}">
+                </div>
+                <div>
+                    Email:<input type="text" value="{{ usuario.email }}">
+                </div>
+            </div>
+            <p><b>ENDEREÇO</b></p>
+            <div class="linha">
+                <div>
+                    Rua:<input type="text" value="{{ usuario.rua }}">
+                </div>
+                <div>
+                    Número:<input type="text" value="{{ usuario.numero }}">
+                </div>
+            </div>
+            <div class="linha">
+                <div>
+                    Bairro:<input type="text" value="{{ usuario.bairro }}">
+                </div>
+                <div>
+                    Complemento:<input type="text" value="{{ usuario.complemento }}">
+                </div>
+            </div>
+            <div class="linha">
+                <div>
+                    Cidade:<input type="text" value="{{ usuario.cidade }}">
+                </div>
+                <div>
+                    Estado:<input type="text" value="{{ usuario.estado }}">
+                </div>
+            </div>
         </form>
         <div class="botoes">
-            <form action="{{ url_for('usuario.logout') }}" method="POST">
+            <form action="{{ url_for('auth.logout') }}" method="POST">
                 <button type="submit">Logout</button>
             </form>
         </div>
     </div>
 </div>
+
 {% endblock %}

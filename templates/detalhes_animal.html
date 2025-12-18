@@ -33,11 +33,9 @@
     {% if dono %}
     </div>
     <div class="botoes">
-    <form action="{{ url_for('animais.editar_animais',animal_id=animal.id) }}" method="POST">
-        <button type="submit">EDITAR INFORMAÇÕES</button>
-    </form> 
-    <!-- editar a parte de edição depois -->
-    
+    <form action="{{ url_for('animais.editar_animais', animal_id=animal.id) }}" method="GET">
+    <button type="submit">EDITAR INFORMAÇÕES</button>
+    </form>
     <form action="{{ url_for('animais.remover_animal') }}" method="post">
         <input type="hidden" name="id" value="{{ animal.id }}">
         <button type="submit">REMOVER CADASTRO</button>

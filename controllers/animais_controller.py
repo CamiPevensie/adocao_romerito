@@ -31,36 +31,38 @@ def remover_animal():
         flash("ID não recebido.", category="error")
         return redirect(url_for('animais.animais')) 
 
-##########        --- editandoo aquii --- 
 @animais_bp.route('/editar_animais/<int:animal_id>', methods=["GET", "POST"])
 @login_required
 def editar_animais(animal_id):
     with Sessao_base() as sessao:
         animal = sessao.query(Animal).filter_by(id=animal_id).first()
-    if not animal:
-        flash("Animal não encontrado.", "error")
-        return redirect(url_for('animais.animais'))
-    if request.method == 'POST':
-        animal.nome = request.form['nome_form']
-        animal.raca = request.form['raca_form']
-        animal.idade = request.form['idade_form']
-        animal.sexo = request.form['sexo_form']
-        animal.porte = request.form['porte_form']
-        animal.vacinado = request.form.get('vacinado_form') == 'on'
-        animal.vacinas_tomadas = request.form['vacinas_tomadas_form']
-        animal.sobre = request.form['sobre_form']
-        animal.localizacao = request.form['localizacao_form']
-        animal.nome_protetor = request.form['nome_protetor_form']
-        animal.telefone_contato = request.form['telefone_contato_form']
-        animal.email_contato = request.form['email_contato_form']
-        animal.foto_animal = request.form['foto_form']
-        animal.usuario_id = current_user.id
-    
-        sessao.commit()
-        flash("Animal atualizado com sucesso!", "success")
-        return redirect(url_for('animais.animais')) 
-    return render_template('editar_animais.html', animal=animal)
 
+        if not animal:
+            flash("Animal não encontrado.", "error")
+            return redirect(url_for('animais.animais'))
+
+        if request.method == 'POST':
+            animal.nome = request.form.get('nome_form') or animal.nome
+            animal.raca = request.form.get('raca_form') or animal.raca
+            animal.idade = request.form.get('idade_form') or animal.idade
+            animal.sexo = request.form.get('sexo_form') or animal.sexo
+            animal.porte = request.form.get('porte_form') or animal.porte
+            animal.vacinado = request.form.get('vacinado_form') == 'on'
+            animal.vacinas_tomadas = request.form.get('vacinas_tomadas_form') or animal.vacinas_tomadas
+            animal.sobre = request.form.get('sobre_form') or animal.sobre
+            animal.localizacao = request.form.get('localizacao_form') or animal.localizacao
+            animal.nome_protetor = request.form.get('nome_protetor_form') or animal.nome_protetor
+            animal.telefone_contato = request.form.get('telefone_contato_form') or animal.telefone_contato
+            animal.email_contato = request.form.get('email_contato_form') or animal.email_contato
+            animal.foto = request.form.get('foto_form') or animal.foto
+            animal.usuario_cad_id = current_user.id
+
+            sessao.commit()
+            flash("Animal atualizado com sucesso!", "success")
+            return redirect(url_for('animais.animais'))
+
+
+    return render_template('editar_animais.html', animal=animal)
 
 @animais_bp.route('/cadastrar_animal', methods=['GET', 'POST'])
 @login_required

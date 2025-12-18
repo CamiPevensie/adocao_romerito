@@ -12,8 +12,6 @@ app.secret_key = "SENHASUPERHIPERMEGASECRETAUAAAAAU"
 
 login_manager.init_app(app)
 
-
-
 @app.route('/')
 def index():
     with Sessao_base() as sessao:

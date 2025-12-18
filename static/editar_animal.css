@@ -1,0 +1,112 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("../static/img/fundo.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    opacity: 0.4;
+    z-index: -1;
+}
+
+body {
+    background-color: #f1f1f1;
+}
+
+.logo img {
+    width: 120px;
+    height: auto;
+}
+
+.logo {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    width: 100%;
+    height: 90vh;
+    flex-direction: column;
+}
+
+.linha {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.linha input {
+    display: inline-block;
+    width: 100%;
+    flex: 1;
+}
+
+.linha button {
+    background-color: #024513;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    width: 150px;
+    height: fit-content;
+}
+
+.container3 {
+    display: flex;
+    justify-content: center;   
+    align-items: center;       
+    width: 100%;
+    height: fit-content;
+    gap: 5%;
+    margin: 0;                 
+}
+
+.container3 form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-self: center;
+    align-self: center;
+    background: #fff;
+    border-radius: 10px;
+    width: fit-content;
+    height: fit-content;
+    box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    gap: 8px;
+    padding: 15px;
+}
+
+.container3 form input {
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    padding: 7px;
+}
+
+p {
+    font-style: italic;
+}
+
+p a {
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #024513;
+    text-decoration: none;
+    padding: 2px 5px 2px 5px;
+}
+
+p a:hover {
+    color:rgb(255, 251, 34);
+}
