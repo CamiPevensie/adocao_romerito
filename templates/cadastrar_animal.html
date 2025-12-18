@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
 {% block titulo %} Cadastro de Animal {% endblock %}
-{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='padrao.css') }}">{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='cadastrar_animal.css') }}">{% endblock %}
 
 {% block conteudo %}
 
@@ -8,8 +8,12 @@
     <div class="container3">
     <form action="{{ url_for('animais.cadastrar_animal') }}" method="POST">
         <h1 style="margin-top: 1px; margin-bottom: 1px;">Coloque-me para adoção!</h1>
-        Nome: *<input type="text" name="nome_form">
-        Raça: <input type="text" name="raca_form">
+        <div class="linha">
+            Nome: *<input type="text" name="nome_form">
+        </div>
+        <div class="linha">
+            Raça: <input type="text" name="raca_form">
+        </div>
         <div class="linha">
             Idade: * <input type="number" name="idade_form">
             Sexo: *<input type="text" name="sexo_form"> 
@@ -20,26 +24,31 @@
         Vacinas tomadas: *<input type="text" name="vacinas_tomadas_form">
         </div>
         Sobre: *<input type="text" name="sobre_form">
-        Foto (Link para uma foto do animal): *<input type="text" name="foto_form">
-        Localização: *<input type="text" name="localizacao_form">
+        <div class="linha">
+            Foto (Link para uma foto do animal): *<input type="text" name="foto_form">
+        </div>        Localização: *<input type="text" name="localizacao_form">
         <div class="linha">
             Nome do protetor: *<input type="text" name="nome_protetor_form">
-            Telefone para contato: *<input type="text" name="telefone_contato_form">
         </div>
-        Email contato: *<input type="text" name="email_contato_form">
+        <div class="linha">
+            Email: *<input type="text" name="email_contato_form">
+            Telefone: *<input type="text" name="telefone_contato_form">
+        </div>
         <input type="submit" value="Enviar">
     </form>
     <div class="img2">
         <img src="../static/img/1-adocao.jpg" alt="">
         </div>
     </div>
+    <div class="flash-container">
     {% with mensagens = get_flashed_messages(with_categories=true) %}
         {% if mensagens %}
             {% for categoria, mensagem in mensagens %}
-            <p class="{{ categoria }}">{{ mensagem }}</p>
+                <p class="{{ categoria }}">{{ mensagem }}</p>
             {% endfor %}
         {% endif %}
     {% endwith %}
+    </div>
     </div>
 
 {% endblock %}

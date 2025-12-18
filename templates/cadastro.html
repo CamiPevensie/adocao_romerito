@@ -5,9 +5,9 @@
 
 <div class="container">
     <div class="container2">
-        <form action="" method="post">
+        <form action="{{ url_for('auth.cadastro') }}" method="post">
         <h1>Formulário de Cadastro</h1>
-        Nome <input type="text" name="nome_form">
+        Nome de Usuário <input type="text" name="nome_form">
         Nome completo <input type="text" name="nome_completo_form">
         <div class="linha">
             Telefone para contato <input type="text" name="telefone_form">

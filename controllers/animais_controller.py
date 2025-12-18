@@ -29,7 +29,20 @@ def remover_animal():
 
     if not animal_id:
         flash("ID não recebido.", category="error")
-        return redirect(url_for('animais.animais')) 
+        return redirect(url_for('animais.animais'))
+
+    with Sessao_base() as sessao:
+        animal = sessao.get(Animal, animal_id)
+
+        if animal:
+            sessao.delete(animal)
+            sessao.commit()
+            flash("Animal removido com sucesso!", category="success")
+        else:
+            flash("Animal não encontrado.", category="error")
+
+    return redirect(url_for('animais.animais'))
+
 
 @animais_bp.route('/editar_animais/<int:animal_id>', methods=["GET", "POST"])
 @login_required
@@ -97,7 +110,7 @@ def cadastrar_animal():
             sessao_db.commit()
 
         flash("Animal cadastrado com sucesso!", "success")
-        return redirect(url_for('animais.animais_para_adocao'))
+        return redirect(url_for('animais.animais'))
 
     return render_template('cadastrar_animal.html')
 

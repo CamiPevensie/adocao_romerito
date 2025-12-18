@@ -18,7 +18,7 @@ class Animal(Base):
     localizacao: Mapped[str] = mapped_column(String(100), nullable=False)
     nome_protetor: Mapped[str] = mapped_column(String(320), nullable=False)
     telefone_contato: Mapped[str] = mapped_column(String(15), nullable=False)
-    email_contato: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
+    email_contato: Mapped[str] = mapped_column(String(100), nullable=False)
     usuario_cad_id = mapped_column(Integer, ForeignKey("usuarios.id"), nullable=False)
 
     usuario = relationship("Usuario")

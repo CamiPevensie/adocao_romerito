@@ -31,6 +31,49 @@ def login():
                 erro = "Usuário ou senha inválidos"
     return render_template('login.html', erro=erro)
 
+@autenticacao_bp.route('/cadastro', methods=['GET', 'POST'])
+def cadastro():
+    if request.method == 'POST':
+        nome = request.form.get('nome_form')
+        nome_completo = request.form.get('nome_completo_form')
+        telefone = request.form.get('telefone_form')
+        email = request.form.get('email_form')
+        senha = request.form.get('senha_form')
+        rua = request.form.get('rua_form')
+        bairro = request.form.get('bairro_form')
+        cidade = request.form.get('cidade_form')
+        numero = request.form.get('numero_form')
+        complemento = request.form.get('complemento_form')
+        estado = request.form.get('estado_form')
+
+        with Sessao_base() as sessao:
+            usuario_existente = sessao.query(Usuario).filter_by(email=email).first()
+            if usuario_existente:
+                flash("Este e-mail já está cadastrado.", "erro")
+                return render_template('cadastro.html')
+
+            novo_usuario = Usuario(
+                nome=nome,
+                nome_completo=nome_completo,
+                telefone=telefone,
+                email=email,
+                senha=senha,
+                rua=rua,
+                bairro=bairro,
+                cidade=cidade,
+                numero=numero,
+                complemento=complemento,
+                estado=estado
+            )
+
+            sessao.add(novo_usuario)
+            sessao.commit()
+
+        flash("Cadastro realizado com sucesso! Faça login.", "success")
+        return redirect(url_for('index'))
+
+    return render_template('cadastro.html')
+
 @autenticacao_bp.route('/logout', methods=['POST'])
 @login_required
 def logout():

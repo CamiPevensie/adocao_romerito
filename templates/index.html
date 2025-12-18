@@ -7,7 +7,7 @@
         <img src="../static/img/cachorrro-e-gato.svg" alt="">
     </div>
 <div class="container">
-    <h1 class="titulo1">ANIMAIS PARA ADOÇÃO</h1>
+    <h1 class="titulo1">CONHEÇA ALGUNS ANIMAIS:</h1>
     <div class="animais">
        {% for animal in animais %}
        
@@ -28,7 +28,9 @@
         </a>
         {% endfor %} 
     </div>
-    
+    <div class="botoes">
+        <a href="{{ url_for('animais.animais') }}">Ver mais...</a>
+    </div>
 </div>
 
 {% endblock %}

@@ -27,6 +27,8 @@ h1, h2, h3, p, a {
 }
 
 .menu .logo img {
+    display: flex;
+    margin-top: 12px;
     width: 150px;
 }
 
@@ -39,6 +41,18 @@ h1, h2, h3, p, a {
     width: 18px;
     height: auto;
     margin-right: 5px;
+}
+
+.menu .links a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 12px;
+}
+
+.menu .links a.ativo {
+    color: #a4ec71;         
+    border-bottom: 2px solid #a4ec71;
+    font-weight: bold;
 }
 
 .menu a:hover {
@@ -79,6 +93,6 @@ h1, h2, h3, p, a {
   justify-self: center;
   align-self: center;
   font-weight: bold;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
