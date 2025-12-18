@@ -49,6 +49,7 @@ body {
     width: 100%;
     height: fit-content;
     gap: 5%;
+    margin-top: 20px; 
 }
 
 .container2 form {
@@ -151,3 +152,4 @@ body {
 .botoes form button:hover{
     color:rgb(255, 251, 34);
 }
+

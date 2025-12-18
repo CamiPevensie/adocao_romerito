@@ -1,0 +1,45 @@
+{% extends 'base.html'%}
+{% block titulo %}  Editar Animal {% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='padrao.css') }}">{% endblock %}
+
+{% block conteudo %}
+
+<div class="container">
+    <div class="container3">
+    <form action="{{ url_for('animais.editar_animais', animal_id=animal.id) }}" method="POST">
+        <h1 style="margin-top: 1px; margin-bottom: 1px;">Coloque-me para adoção!</h1>
+        Nome: *<input type="text" name="nome_form" value="{{ animal.nome }}">
+        Raça: <input type="text" name="raca_form" value="{{ animal.raca }}">
+        <div class="linha">
+            Idade: * <input type="number" name="idade_form" value="{{ animal.idade }}">
+            Sexo: *<input type="text" name="sexo_form" value="{{ animal.sexo }}"> 
+            Porte: *<input type="text" name="porte_form" value="{{ animal.porte }}">
+        </div>
+        <div class="linha">
+        Vacinado? *<input type="checkbox" name="vacinado_form" {% if animal.vacinado %}checked{% endif %}>
+        Vacinas tomadas: *<input type="text" name="vacinas_tomadas_form" value="{{ animal.vacinas_tomadas}}">
+        </div>
+        Sobre: *<input type="text" name="sobre_form" value="{{ animal.sobre }}">
+        Foto (Link para uma foto do animal): *<input type="text" name="foto_form" value="{{ animal.foto_animal }}">
+        Localização: *<input type="text" name="localizacao_form" value="{{ animal.localizacao }}">
+        <div class="linha">
+            Nome do protetor: *<input type="text" name="nome_protetor_form" value="{{ animal.nome_protetor }}">
+            Telefone para contato: *<input type="text" name="telefone_contato_form" value="{{ animal.telefone_contato }}">
+        </div>
+        Email contato: *<input type="text" name="email_contato_form" value="{{ animal.email_contato }}">
+        <input type="submit" value="Enviar">
+    </form>
+    <div class="img2">
+        <img src="../static/img/1-adocao.jpg" alt="">
+        </div>
+    </div>
+    {% with mensagens = get_flashed_messages(with_categories=true) %}
+        {% if mensagens %}
+            {% for categoria, mensagem in mensagens %}
+            <p class="{{ categoria }}">{{ mensagem }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    </div>
+
+{% endblock %}

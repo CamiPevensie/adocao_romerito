@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash, session
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 from database import Sessao_base
 from models.animal import Animal
+from flask_login import login_required, current_user
 
 animais_bp = Blueprint("animais", __name__)
 
@@ -17,10 +18,9 @@ def detalhes_animal(animal_id):
         animal = sessao.get(Animal, animal_id)
         if animal is None:
             return "Animal não encontrado", 404
-        usu_id = session.get('usuario_id')
-        dono = False
-        if usu_id == animal.usuario_cad_id:
-            dono = True
+        dono = (
+            current_user.is_authenticated and current_user.id == animal.usuario_cad_id
+        )
     return render_template('detalhes_animal.html', animal=animal, dono=dono)
 
 @animais_bp.route('/remover_animal', methods=["GET", "POST"])
@@ -30,22 +30,41 @@ def remover_animal():
     if not animal_id:
         flash("ID não recebido.", category="error")
         return redirect(url_for('animais.animais')) 
-    
+
+##########        --- editandoo aquii --- 
+@animais_bp.route('/editar_animais/<int:animal_id>', methods=["GET", "POST"])
+@login_required
+def editar_animais(animal_id):
     with Sessao_base() as sessao:
         animal = sessao.query(Animal).filter_by(id=animal_id).first()
-        if animal:
-            sessao.delete(animal)
-            sessao.commit()
-        else:
-            flash("Animal não encontrado.", category="error")
+    if not animal:
+        flash("Animal não encontrado.", "error")
+        return redirect(url_for('animais.animais'))
+    if request.method == 'POST':
+        animal.nome = request.form['nome_form']
+        animal.raca = request.form['raca_form']
+        animal.idade = request.form['idade_form']
+        animal.sexo = request.form['sexo_form']
+        animal.porte = request.form['porte_form']
+        animal.vacinado = request.form.get('vacinado_form') == 'on'
+        animal.vacinas_tomadas = request.form['vacinas_tomadas_form']
+        animal.sobre = request.form['sobre_form']
+        animal.localizacao = request.form['localizacao_form']
+        animal.nome_protetor = request.form['nome_protetor_form']
+        animal.telefone_contato = request.form['telefone_contato_form']
+        animal.email_contato = request.form['email_contato_form']
+        animal.foto_animal = request.form['foto_form']
+        animal.usuario_id = current_user.id
     
-    return redirect(url_for('animais.animais'))
+        sessao.commit()
+        flash("Animal atualizado com sucesso!", "success")
+        return redirect(url_for('animais.animais')) 
+    return render_template('editar_animais.html', animal=animal)
+
 
 @animais_bp.route('/cadastrar_animal', methods=['GET', 'POST'])
+@login_required
 def cadastrar_animal():
-    if 'usuario_id' not in session:
-        flash("Você precisa estar logado para cadastrar um animal.", "error")
-        return redirect(url_for('auth.login'))
 
     if request.method == 'POST':
         nome = request.form['nome_form']
@@ -61,7 +80,7 @@ def cadastrar_animal():
         telefone_contato = request.form['telefone_contato_form']
         email_contato = request.form['email_contato_form']
         foto_animal = request.form['foto_form']
-        usuario_id = session.get('usuario_id')
+        usuario_id = current_user.id
 
         if not all([nome, idade, sexo, porte, localizacao,nome_protetor, telefone_contato, email_contato, foto_animal]):
             flash("Preencha todos os campos obrigatórios.", "error")

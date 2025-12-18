@@ -7,12 +7,12 @@ from controllers.animais_controller import animais_bp
 from controllers.adocao_controller import adocao_bp
 from controllers.usuario_controller import usuario_bp
 
-
 app = Flask(__name__)
 app.secret_key = "SENHASUPERHIPERMEGASECRETAUAAAAAU"
 
-
 login_manager.init_app(app)
+
+
 
 @app.route('/')
 def index():

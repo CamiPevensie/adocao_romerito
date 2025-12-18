@@ -3,16 +3,12 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 from models.usuario import Usuario
 from database import Sessao_base
 login_manager = LoginManager()
-login_manager.login_view = 'login'
+login_manager.login_view = 'auth.login'
 
-
-@login_manager.user_loader
+@login_manager.user_loader 
 def load_user(user_id):
-    db = Sessao_base()
-    try:
-        return db.get(Usuario, int(user_id))
-    finally:
-        db.close
+    with Sessao_base() as sessao: 
+        return sessao.get(Usuario, int(user_id))
 
 autenticacao_bp = Blueprint("auth", __name__)
 
@@ -23,10 +19,12 @@ def debug():
         "id": current_user.get_id() if current_user.is_authenticated else None
     }
 
-@autenticacao_bp.route("forceL")
+@autenticacao_bp.route("/forceL")
 def forceL():
-    usuario = Usuario.query.first()
+    db = Sessao_base()
+    usuario = db.query(Usuario).first()
     login_user(usuario)
+    db.close
     return "logado"
 
 @autenticacao_bp.route("/login", methods=["GET", "POST"])
@@ -39,11 +37,12 @@ def login():
         with Sessao_base() as sessao:
             usuario = sessao.query(Usuario).filter_by(email=email).first()
             print(usuario)
-        if usuario and usuario.senha == senha:
-            session['usuario_id'] = usuario.id
-            return render_template('perfil.html', usuario=usuario)
-        else:
-            erro = "Usuário ou senha inválidos"
+            if usuario and usuario.senha == senha:
+                login_user(usuario)
+ 
+                return redirect (url_for("usuario.perfil"))
+            else:
+                erro = "Usuário ou senha inválidos"
     return render_template('login.html', erro=erro)
 
 from flask import request, flash, redirect, url_for
